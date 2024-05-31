@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="ranger">
+
+
+
+
+
+<title>ODE | Made on earth by human</title>
+
+
+
+    <link rel="icon" href="../../../../favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="../../../../css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="../../../../js/script.js"></script>
+    
+    <script src="../../../../js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Made on earth by human</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="../../../../archives">Posts</a>
+                
+                    <a class="menu-item" href="../../../../category">Categories</a>
+                
+                    <a class="menu-item" href="../../../../tag">Tags</a>
+                
+                    <a class="menu-item" href="../../../../about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Made on earth by human</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="../../../../archives">Posts</a>
+                
+                    <a class="menu-item" href="../../../../category">Categories</a>
+                
+                    <a class="menu-item" href="../../../../tag">Tags</a>
+                
+                    <a class="menu-item" href="../../../../about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">ODE</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">ranger</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">五月 17, 2024&nbsp;&nbsp;11:57:46</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="../../../../categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>​    </p>
+<h2 id="一阶线性方程"><a href="#一阶线性方程" class="headerlink" title="一阶线性方程"></a>一阶线性方程</h2><ol>
+<li>可以直接分离变量</li>
+<li>齐次的形式（$\frac{\mathrm{d}y}{\mathrm{d}x}=f(\frac{y}{x})$）</li>
+<li>一阶线性非齐次方程   （$\frac{\mathrm{d} y}{\mathrm{d} x}+P(x)y=Q(x)$）</li>
+<li>伯努利方程（$\frac{\mathrm{d} y}{\mathrm{d} x}+P(x)y=Q(x)y^{n}$）</li>
+</ol>
+<hr>
+<p>前两个都比较简单，当为齐次的形式</p>
+<script type="math/tex; mode=display">
+令u=\frac{y}{x},那么y=ux,\frac{\mathrm{d}y}{\mathrm{d}x}=\frac{\mathrm{d}(ux)}{\mathrm{d}x}=u+x\frac{\mathrm{d}u}{\mathrm{d}x}</script><p>第三个，(i)Q=0</p>
+<script type="math/tex; mode=display">
+\frac{\mathrm{d}y}{y}=-P\cdot \mathrm{d}x</script><p>​    </p>
+<script type="math/tex; mode=display">
+\Leftrightarrow y=Ce^{-\int P dx}</script><p>​        (ii)Q$\ne$0 ，使用常数变异法$u=u(x)$,我们用它代替C</p>
+<p>​        此时$\frac{\mathrm{d}y}{\mathrm{d}x}=\frac{\mathrm{d}u}{\mathrm{d}x}e^{-\int P dx}-Pue^{-\int P\mathrm{d}x}=Q-Pue^{-\int P\mathrm{d}x}$</p>
+<script type="math/tex; mode=display">
+于是,\frac{\mathrm{d}u}{\mathrm{d}x}=Qe^{\int P \mathrm{d}x},u=\int Qe^{\int P \mathrm{d}x} \mathrm{d}x+C'</script><script type="math/tex; mode=display">
+带入得，y=e^{-\int P dx} \cdot(\int Qe^{\int P \mathrm{d}x} \mathrm{d}x+C')</script><p>第四个，伯努利方程，将左右都除以$y^{n}$就转化为了第三种形式</p>
+<p>​    </p>
+<script type="math/tex; mode=display">
+y^{-n}\frac{\mathrm{d} y}{\mathrm{d} x}+P(x)y^{1-n}=Q(x)</script><script type="math/tex; mode=display">
+\Leftrightarrow \frac{1}{1-n}\frac{\mathrm{d} y^{1-n}}{\mathrm{d} x}+P(x)y^{1-n}=Q(x),再令z=y^{1-n}</script><hr>
+<h2 id="全微分方程"><a href="#全微分方程" class="headerlink" title="全微分方程"></a>全微分方程</h2><p>如果确认为全微分方程，直接按照路径积分即可，比如说：</p>
+<script type="math/tex; mode=display">
+求：xy(y-xy')=x+yy',y(0)=\frac{\sqrt{2}}{2}</script><script type="math/tex; mode=display">
+\Leftrightarrow y'=\frac{xy^{2}-x}{x^{2}y+y}，显然不是前面的形式</script><script type="math/tex; mode=display">
+\Leftrightarrow (xy^{2}-x)\mathrm{d}x-(x^{2}y+y)\mathrm{d}y=0</script><script type="math/tex; mode=display">
+\frac{\partial P}{\partial y}=2xy,\frac{\partial Q}{\partial x}=2xy,确认为全微分方程</script><p>我先沿着$(0,0)\rightarrow (0,y)$,再沿着$(0,y)\rightarrow (x,y)$的路线进行积分</p>
+<script type="math/tex; mode=display">
+C=-\int_{0}^{y}y\mathrm{d}y+\int_{0}^{x}(xy^{2}-x)\mathrm{d}x=\frac{1}{2}x^{2}y^{2}-\frac{1}{2}x^{2}-\frac{1}{2}y^{2}</script><script type="math/tex; mode=display">
+带入得：\frac{1}{2}x^{2}y^{2}-\frac{1}{2}x^{2}-\frac{1}{2}y^{2}=-\frac{1}{4}</script><hr>
+<p><a target="_blank" rel="noopener" href="https://www.cc98.org/topic/5896256">题目来源</a></p>
+<p>1.</p>
+<script type="math/tex; mode=display">
+\frac{\mathrm{d}y}{\mathrm{d}x}=-\frac{1}{4}y^2lnx\\
+-\frac{1}{y^2}\mathrm{d}y=\frac{1}{4}lnx\mathrm{d}x\\
+\frac{1}{y}=\frac{1}{4}x(lnx-1)+C\\
+y=\frac{4}{x(lnx-1)+C}</script><p>2.</p>
+<script type="math/tex; mode=display">
+(y^3+y)\mathrm{d}x=-x(y^2-1)\mathrm{d}y\\
+-\frac{1}{x}\mathrm{d}x=\frac{y^2-1}{y^3+y}\mathrm{d}y=\frac{y^2+1-2}{y^3+y}\mathrm{d}y=(\frac{1}{y}-\frac{2}{y(y^2+1)})\mathrm{d}y\\
+-\frac{1}{x}\mathrm{d}x=(-\frac{1}{y}+\frac{2y}{y^2+1})\mathrm{d}y\\
+\frac{y}{y^2+1}=x+C</script><p>3.</p>
+<script type="math/tex; mode=display">
+y=ue^{sinx},\frac{\mathrm{d}y}{\mathrm{d}x}=u'e^{sinx}+ue^{sinx}cosx\\
+代入u'=3x,u=\frac{3}{2}x^2+C\\
+y=(\frac{3}{2}x^2+C)e^{sinx},C=4\\
+y=(\frac{3}{2}x^2+4)e^{sinx}</script><p>4.</p>
+<script type="math/tex; mode=display">
+\frac{\mathrm{d}(\frac{1}{y})}{\mathrm{d}x}+2x\frac{1}{y}=e^{-x^2}cosx\\
+z=\frac{1}{y},\frac{\mathrm{d}z}{\mathrm{d}x}+2xz=e^{-x^2}cosx\\
+z=ue^{-x^2},\frac{\mathrm{d}z}{\mathrm{d}x}=u'e^{-x^2}-2uxe^{x^2},u'e^{-x^2}=e^{-x^2}cosx,u'=cosx\\
+u=sinx+C,\therefore z=\frac{1}{y}=(sinx+C)e^{-x^2},y=\frac{1}{(sinx+C)e^{-x^2}}</script><p>5.</p>
+<script type="math/tex; mode=display">
+懒得写了，y'=\frac{1}{2}e^{2y}+C_1,(C_1=0)\\
+-\frac{1}{2}e^{-2y}=\frac{1}{2}x+C_2(C_2=-\frac{1}{2})\\
+y=-\frac{1}{2}ln(1-x)</script>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>ranger</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://rangertherefore.top/2024/05/17/ODE/">https://rangertherefore.top/2024/05/17/ODE/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="../../19/Lithium/">Lithium</a>
+            
+            
+            <a class="next" rel="next" href="../../../04/28/Down%20In%20A%20Hole-Alice/">down in a hole</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© ranger | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

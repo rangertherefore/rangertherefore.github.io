@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="ranger">
+
+
+
+
+
+<title>画法几何笔记 | Made on earth by human</title>
+
+
+
+    <link rel="icon" href="../../../../favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="../../../../css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="../../../../js/script.js"></script>
+    
+    <script src="../../../../js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Made on earth by human</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="../../../../archives">Posts</a>
+                
+                    <a class="menu-item" href="../../../../category">Categories</a>
+                
+                    <a class="menu-item" href="../../../../tag">Tags</a>
+                
+                    <a class="menu-item" href="../../../../about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Made on earth by human</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="../../../../archives">Posts</a>
+                
+                    <a class="menu-item" href="../../../../category">Categories</a>
+                
+                    <a class="menu-item" href="../../../../tag">Tags</a>
+                
+                    <a class="menu-item" href="../../../../about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">画法几何笔记</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">ranger</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">四月 25, 2024&nbsp;&nbsp;13:49:28</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="../../../../categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>之前参加工高班选拔，翘了2节画法几何课，翘课的时候他把进度推到了透视。回来听lxd老师的课属实是抽象，<del>虽然老师很尽力的想让学生听懂，但似乎没啥效果</del>。经过几节听不懂的坐牢一样画法几何课的龙场悟道，总算是靠自学赶上了进度~~，以下是我的自学笔记，可能自己的主观感受会比较多，希望对你有帮助。</p>
+<hr>
+<p>基础概念：</p>
+<ul>
+<li><p>基面：建筑形体的地平面</p>
+</li>
+<li><p>画面：我们所看到的透视图所在的平面</p>
+</li>
+<li><p>视点：相当于人眼</p>
+</li>
+<li><p>视平面/视平线：和H面平行和视点等高的平面/视平面和画面的交线</p>
+</li>
+<li><p>一点透视/两点透视/三点透视：三者的主要区别在于到底有几个灭点，一般画的是前两种透视</p>
+<p><img src="/images/透视图1.jpg" alt></p>
+</li>
+</ul>
+<p>灭点就是不平行于画面的直线会在画面上消失的点，这样说还是比较抽象，看下图：</p>
+<p><img src="/images/演示图.jpg" alt></p>
+<p><img src="/images/演示图2.jpg" alt></p>
+<p>一个兔子，沿着不平行和人相反的方向奔跑，兔子和人眼的连线，即视线，会不断上升，逐渐逼近于一个点，这也是很好理解的，你把一条无限长的直线上的点和视点连接，在向外无限延伸后，最终会产生平行于这条直线的效果。这就是灭点的来源。</p>
+<p>为什么要不平行于画面呢，就像这里面的兔子，如果它奔跑的方向和画面平行，它产生的直线上的点和视点会产生的是直线而不是点了，灭点也就无从谈起了。</p>
+<p><strong>视线法</strong>：</p>
+<p><img src="/images/视线法.jpg" alt></p>
+<p><em>在这个立方体里，两个侧面的水平线为Y轴，会最终缩到灭点，而两个水平线和V面垂直，所以我们只需要通过做视点到视平线的垂线就可以获取灭点，而两个后面4个点的X坐标，我们通过视线和画面的交线获取。</em></p>
+<p><img src="/images/视线法2.jpg" alt></p>
+<p>还是一个道理，我们找到了水平线ab在画面上消失的轨迹，通过在H面获取的X坐标，找到了透视图</p>
+<p><strong>真高线T.H：直线ab和平面V相交的交点N，过N作XO的垂线即为真高线，如果点位于画面上，那么就是它的真实高度</strong></p>
+<p>ab不是水平线时，情况大同小异，搞清楚原理就很好做了：</p>
+<p><img src="/images/视线法3.jpg" alt></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>ranger</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://rangertherefore.top/2024/04/25/test/">https://rangertherefore.top/2024/04/25/test/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="../../28/Down%20In%20A%20Hole-Alice/">down in a hole</a>
+            
+            
+            <a class="next" rel="next" href="../../17/About%20a%20girl/">About a girl</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© ranger | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

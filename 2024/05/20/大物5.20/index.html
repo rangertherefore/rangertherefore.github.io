@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="ranger">
+
+
+
+
+
+<title>大物5.20 | Made on earth by human</title>
+
+
+
+    <link rel="icon" href="../../../../favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="../../../../css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="../../../../js/script.js"></script>
+    
+    <script src="../../../../js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Made on earth by human</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="../../../../archives">Posts</a>
+                
+                    <a class="menu-item" href="../../../../category">Categories</a>
+                
+                    <a class="menu-item" href="../../../../tag">Tags</a>
+                
+                    <a class="menu-item" href="../../../../about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Made on earth by human</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="../../../../archives">Posts</a>
+                
+                    <a class="menu-item" href="../../../../category">Categories</a>
+                
+                    <a class="menu-item" href="../../../../tag">Tags</a>
+                
+                    <a class="menu-item" href="../../../../about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">大物5.20</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">ranger</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">五月 20, 2024&nbsp;&nbsp;18:17:20</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="../../../../categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <script type="math/tex; mode=display">
+PV=\frac{M}{\mu}RT(\mu为摩尔质量),而k=\frac{R}{N_A},P=\frac{MRT}{V\mu}=\frac{\frac{M}{\mu}\cdot N_A}{V}\cdot\frac{R}{N_A}\cdot T=nkT(n为数量密度)</script><p>​    理想气体压强公式:$p=\frac{1}{3}nm\overline{v^2}$,又有$p=\frac{2}{3}n\overline{E_k}$</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>单原子分子</th>
+<th>自由度为3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>双原子分子（不考虑振动）</td>
+<td>自由度为5</td>
+</tr>
+<tr>
+<td>双原子分子（考虑振动）</td>
+<td>自由度为5</td>
+</tr>
+<tr>
+<td>多原子分子</td>
+<td>自由度为6</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>能量均分定理：</p>
+<script type="math/tex; mode=display">
+每个自由度的能量都为\frac{1}{2}kT,如当为无振动的双原子分子，E_k=\frac{5}{2}kT</script><p>麦克斯韦速率分布律：</p>
+<script type="math/tex; mode=display">
+速率分布函数：f(v)=\frac{\mathrm{d}N}{N\mathrm{d}v},于是，\int_{0}^{+\infty}f(v)\mathrm{d}v=1</script><script type="math/tex; mode=display">
+而f(v)=4\pi(\frac{m}{2\pi kT})^{\frac{3}{2}}e^{\frac{-mv^2}{2kT}}v^2=4\pi(\frac{b}{\pi})^{\frac{3}{2}}e^{-bv^2}v^2~~~~~~~~~~~(b=\frac{m}{2kT})</script><script type="math/tex; mode=display">
+三个统计速率：\\
+v_p(最概然速率)=\sqrt{\frac{1}{b}}\\
+\overline{v}=\sqrt{\frac{4}{\pi b}}\\
+\sqrt{\overline{v^2}}=\sqrt{\frac{3}{2b}}</script><p>P177 11-3:</p>
+<p>容器内压强为$p=1\times10^5Pa,温度t=27^\circ C$的氮气</p>
+<ol>
+<li><p>求分子数</p>
+</li>
+<li><p>求分子质量</p>
+</li>
+<li><p>求气体密度</p>
+</li>
+<li><p>求分子的均方根速率</p>
+</li>
+<li><p>分子的平均平动动能</p>
+<p>1.</p>
+<script type="math/tex; mode=display">
+PV=nRT,P=nkT\\
+n=\frac{P}{kT}=\frac{1\times10^5}{1.38\times10^{-23}\times300}=2.41\times10^{25}</script><p>2.</p>
+<script type="math/tex; mode=display">
+\mu=N_A\times m\\
+m=\frac{\mu}{N_A}=4.65\times10^{-26}kg</script><p>3.</p>
+<script type="math/tex; mode=display">
+\rho=n\times m=1.12kg/m^3</script><p>4.</p>
+<script type="math/tex; mode=display">
+b=\frac{m}{2kT}=5.61\times 10^{-6}\\
+\sqrt{\overline{v^2}}=\sqrt{\frac{3}{2b}}=517m/s</script><p>5.</p>
+</li>
+</ol>
+<script type="math/tex; mode=display">
+P=\frac{2}{3}nE_k\\
+E_k=\frac{3p}{2n}=6.22\times 10^{21}J</script>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>ranger</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://rangertherefore.top/2024/05/20/%E5%A4%A7%E7%89%A95.20/">https://rangertherefore.top/2024/05/20/%E5%A4%A7%E7%89%A95.20/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="../../21/%E5%BE%AE%E7%A7%AF%E5%88%86%E7%94%B2%E4%B8%8B%E5%A4%8D%E4%B9%A0%EF%BC%882%EF%BC%89/">微积分甲下复习(2)</a>
+            
+            
+            <a class="next" rel="next" href="../Something-in-the-way/">Something in the way</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© ranger | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
