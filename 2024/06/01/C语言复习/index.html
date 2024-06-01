@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="ranger">
+
+
+
+
+
+<title>C语言复习 | Made on earth by human</title>
+
+
+
+    <link rel="icon" href="../../../../favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="../../../../css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="../../../../js/script.js"></script>
+    
+    <script src="../../../../js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Made on earth by human</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="../../../../archives">Posts</a>
+                
+                    <a class="menu-item" href="../../../../category">Categories</a>
+                
+                    <a class="menu-item" href="../../../../tag">Tags</a>
+                
+                    <a class="menu-item" href="../../../../about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Made on earth by human</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="../../../../archives">Posts</a>
+                
+                    <a class="menu-item" href="../../../../category">Categories</a>
+                
+                    <a class="menu-item" href="../../../../tag">Tags</a>
+                
+                    <a class="menu-item" href="../../../../about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">C语言复习</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">ranger</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">六月 1, 2024&nbsp;&nbsp;7:33:51</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="../../../../categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>注意<code>++p</code>喝<code>p++</code>的区别前一个对它进行指针取值是改变后的值，后一个是改变前的值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">f</span><span class="params">(<span class="type">int</span> *p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">      *p = <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">      <span class="type">int</span> a, *p;</span><br><span class="line">      a = <span class="number">10</span>;</span><br><span class="line">      p = &amp;a;</span><br><span class="line">      <span class="built_in">f</span>(p);</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, (*p)++);			<span class="comment">/*答案为5 hhh*/</span></span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">      <span class="type">char</span> *p[]=&#123;<span class="string">&quot;abc&quot;</span>,<span class="string">&quot;hello&quot;</span>&#125;;	<span class="comment">/*属于字符数组，所以是由指针数组来指*/</span></span><br><span class="line">      <span class="built_in">puts</span>(p[<span class="number">1</span>]);	<span class="comment">/*输出hello*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">      <span class="type">char</span> *p[]=&#123;<span class="string">&quot;abc&quot;</span>,<span class="string">&quot;hello&quot;</span>&#125;;</span><br><span class="line">      *p=<span class="string">&quot;our&quot;</span>;</span><br><span class="line">      <span class="built_in">puts</span>(p[<span class="number">0</span>]);	<span class="comment">/*输出our*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>让我们一步一步地了解 <code>strcmp</code>、<code>strlen</code> 和 <code>strcat</code> 这三个标准C库函数的用法。</p>
+<h3 id="1-strcmp-用法"><a href="#1-strcmp-用法" class="headerlink" title="1. strcmp 用法"></a>1. <code>strcmp</code> 用法</h3><p><code>strcmp</code> 用于比较两个字符串的字典序。它有以下的函数原型：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Copyint <span class="title">strcmp</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *str1, <span class="type">const</span> <span class="type">char</span> *str2)</span></span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>返回值</p>
+<p>：</p>
+<ul>
+<li><code>0</code>：如果两个字符串相等。</li>
+<li><code>&lt;0</code>：如果 <code>str1</code> 小于 <code>str2</code>。</li>
+<li><code>&gt;0</code>：如果 <code>str1</code> 大于 <code>str2</code>。</li>
+</ul>
+</li>
+</ul>
+<p><strong>示例代码</strong>：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Copy<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">char</span> str1[] = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">    <span class="type">char</span> str2[] = <span class="string">&quot;world&quot;</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> result = <span class="built_in">strcmp</span>(str1, str2);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (result &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;str1 is less than str2</span></span><br><span class="line"><span class="string">&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (result == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;str1 is equal to str2</span></span><br><span class="line"><span class="string">&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;str1 is greater than str2</span></span><br><span class="line"><span class="string">&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-strlen-用法"><a href="#2-strlen-用法" class="headerlink" title="2. strlen 用法"></a>2. <code>strlen</code> 用法</h3><p><code>strlen</code> 用于计算字符串的长度（不包括末尾的空字符 <code>\0</code>）。它有以下的函数原型：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Copysize_t <span class="title">strlen</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *str)</span></span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>返回值</strong>：字符串的长度。</li>
+</ul>
+<p><strong>示例代码</strong>：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Copy<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">char</span> str[] = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="type">size_t</span> length = <span class="built_in">strlen</span>(str);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The length of the string is: %zu</span></span><br><span class="line"><span class="string">&quot;</span>, length);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-strcat-用法"><a href="#3-strcat-用法" class="headerlink" title="3. strcat 用法"></a>3. <code>strcat</code> 用法</h3><p><code>strcat</code> 用于将两个字符串连接起来。它有以下的函数原型：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Copychar *<span class="title">strcat</span><span class="params">(<span class="type">char</span> *dest, <span class="type">const</span> <span class="type">char</span> *src)</span></span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>返回值</strong>：指向结果字符串的指针。</li>
+</ul>
+<p>注意：目标字符串 <code>dest</code> 必须有足够的空间来存放连接后的结果，否则会导致缓冲区溢出。</p>
+<p><strong>示例代码</strong>：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Copy<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">char</span> dest[<span class="number">20</span>] = <span class="string">&quot;hello&quot;</span>;  <span class="comment">// 需要足够的空间存放连接后的字符串</span></span><br><span class="line">    <span class="type">char</span> src[] = <span class="string">&quot; world&quot;</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">strcat</span>(dest, src);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The concatenated string is: %s</span></span><br><span class="line"><span class="string">&quot;</span>, dest);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="结合使用-strcmp、strlen-strcpy-和-strcat-的示例"><a href="#结合使用-strcmp、strlen-strcpy-和-strcat-的示例" class="headerlink" title="结合使用 strcmp、strlen strcpy 和 strcat 的示例"></a>结合使用 <code>strcmp</code>、<code>strlen</code> <code>strcpy</code> 和 <code>strcat</code> 的示例</h3><p>让我们编写一个示例程序来展示如何结合使用这些函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">Copy<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">char</span> str1[<span class="number">50</span>] = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">    <span class="type">char</span> str2[] = <span class="string">&quot;world&quot;</span>;</span><br><span class="line">    <span class="type">char</span> str3[] = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用 strcmp 比较字符串</span></span><br><span class="line">    <span class="type">int</span> cmp_result = <span class="built_in">strcmp</span>(str1, str2);</span><br><span class="line">    <span class="keyword">if</span> (cmp_result &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;str1 is less than str2</span></span><br><span class="line"><span class="string">&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (cmp_result == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;str1 is equal to str2</span></span><br><span class="line"><span class="string">&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;str1 is greater than str2</span></span><br><span class="line"><span class="string">&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用 strlen 计算字符串长度</span></span><br><span class="line">    <span class="type">size_t</span> length1 = <span class="built_in">strlen</span>(str1);</span><br><span class="line">    <span class="type">size_t</span> length2 = <span class="built_in">strlen</span>(str2);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Length of str1: %zu</span></span><br><span class="line"><span class="string">&quot;</span>, length1);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Length of str2: %zu</span></span><br><span class="line"><span class="string">&quot;</span>, length2);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用 strcat 连接字符串</span></span><br><span class="line">    <span class="built_in">strcat</span>(str1, <span class="string">&quot; &quot;</span>);</span><br><span class="line">    <span class="built_in">strcat</span>(str1, str2);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Concatenated string: %s</span></span><br><span class="line"><span class="string">&quot;</span>, str1);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 比较连接后的字符串与预期结果</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">strcmp</span>(str1, str3) == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;The concatenated string is correct.</span></span><br><span class="line"><span class="string">&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;The concatenated string is incorrect.</span></span><br><span class="line"><span class="string">&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行上述程序将会得到如下输出：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Copystr1 is less than str2</span><br><span class="line">Length of str1: <span class="number">5</span></span><br><span class="line">Length of str2: <span class="number">5</span></span><br><span class="line">Concatenated string: hello world</span><br><span class="line">The concatenated string is correct.</span><br></pre></td></tr></table></figure>
+<p>通过以上示例，你可以了解如何使用 <code>strcmp</code>、<code>strlen</code> 和 <code>strcat</code> 进行字符串比较、长度计算和连接操作。</p>
+<p><code>strcpy</code> 是一个用于复制字符串的标准库函数。它的原型是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Copychar *strcpy(char *dest, const char *src);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>参数</strong>：<ul>
+<li><code>dest</code>：目标字符串指针，必须指向足够大的空间以容纳源字符串及其终止的空字符。</li>
+<li><code>src</code>：源字符串指针。</li>
+</ul>
+</li>
+<li><strong>返回值</strong>：返回目标字符串指针 <code>dest</code>。</li>
+</ul>
+<h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3><p>下面是一个使用 <code>strcpy</code> 的简单示例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Copy<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">char</span> src[] = <span class="string">&quot;Hello, World!&quot;</span>;</span><br><span class="line">    <span class="type">char</span> dest[<span class="number">50</span>]; <span class="comment">// 确保 dest 足够大以存放 src 的内容</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用 strcpy 将 src 复制到 dest</span></span><br><span class="line">    <span class="built_in">strcpy</span>(dest, src);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 打印目标字符串</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Source: %s</span></span><br><span class="line"><span class="string">&quot;</span>, src);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Destination: %s</span></span><br><span class="line"><span class="string">&quot;</span>, dest);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><ol>
+<li><strong><code>char src[] = &quot;Hello, World!&quot;;</code></strong>：声明并初始化源字符串 <code>src</code>。</li>
+<li><strong><code>char dest[50];</code></strong>：声明目标字符串 <code>dest</code>，确保它有足够的空间存放源字符串及其终止的空字符。</li>
+<li><strong><code>strcpy(dest, src);</code></strong>：将 <code>src</code> 的内容复制到 <code>dest</code>。</li>
+<li><strong><code>printf</code></strong>：打印源字符串和目标字符串以验证复制是否成功。</li>
+</ol>
+<p>运行这段代码将输出：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CopySource: Hello, World!</span><br><span class="line">Destination: Hello, World!</span><br></pre></td></tr></table></figure>
+<p>代码复习:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">char</span> *<span class="title">sort</span><span class="params">(<span class="type">char</span> *a,<span class="type">char</span> *b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">char</span> tmp;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">strcmp</span>(a,b)&gt;=<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        tmp=*b;</span><br><span class="line">        *a=*b;</span><br><span class="line">        *b=tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">      <span class="type">char</span> a[]=<span class="string">&quot;hello&quot;</span>,b[]=<span class="string">&quot;abc&quot;</span>;</span><br><span class="line">      <span class="built_in">sort</span>(a,b);</span><br><span class="line">      <span class="built_in">puts</span>(a);		<span class="comment">/*返回allow,因为*a=a[0]*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>正确的代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">char</span> *<span class="title">sort</span><span class="params">(<span class="type">char</span> *a,<span class="type">char</span> *b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">char</span> tmp[<span class="number">100</span>];		/记得初始化/</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">strcmp</span>(a,b)&gt;=<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">strcpy</span>(tmp,b);</span><br><span class="line">        <span class="built_in">strcpy</span>(b,a);</span><br><span class="line">        <span class="built_in">strcpy</span>(a,tmp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>ranger</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://rangertherefore.top/2024/06/01/C%E8%AF%AD%E8%A8%80%E5%A4%8D%E4%B9%A0/">https://rangertherefore.top/2024/06/01/C%E8%AF%AD%E8%A8%80%E5%A4%8D%E4%B9%A0/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="../../../05/31/%E9%9B%A8/">雨</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© ranger | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
