@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="ranger">
+
+
+
+
+
+<title>从零开始的深度学习：day1 | Made on earth by human</title>
+
+
+
+    <link rel="icon" href="../../../../favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="../../../../css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="../../../../js/script.js"></script>
+    
+    <script src="../../../../js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Made on earth by human</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="../../../../archives">Posts</a>
+                
+                    <a class="menu-item" href="../../../../category">Categories</a>
+                
+                    <a class="menu-item" href="../../../../tag">Tags</a>
+                
+                    <a class="menu-item" href="../../../../about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Made on earth by human</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="../../../../archives">Posts</a>
+                
+                    <a class="menu-item" href="../../../../category">Categories</a>
+                
+                    <a class="menu-item" href="../../../../tag">Tags</a>
+                
+                    <a class="menu-item" href="../../../../about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">从零开始的深度学习：day1</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">ranger</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">七月 14, 2024&nbsp;&nbsp;20:22:23</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="../../../../categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="线性回归："><a href="#线性回归：" class="headerlink" title="线性回归："></a>线性回归：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> d2lzh_pytorch <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">lr=<span class="number">0.03</span></span><br><span class="line">num_epoches=<span class="number">10</span></span><br><span class="line">batch_size=<span class="number">10</span></span><br><span class="line">num_inputs=<span class="number">2</span></span><br><span class="line">num_examples=<span class="number">1000</span></span><br><span class="line">true_w=[<span class="number">1.2</span>,<span class="number">3</span>]</span><br><span class="line">true_b=<span class="number">2.3</span></span><br><span class="line">features=torch.from_numpy(np.random.normal(<span class="number">0</span>,<span class="number">1</span>,(num_examples,num_inputs)))</span><br><span class="line">labels=features[:,<span class="number">0</span>]*true_w[<span class="number">0</span>]+features[:,<span class="number">1</span>]*true_w[<span class="number">1</span>]+true_b</span><br><span class="line">labels+=torch.from_numpy(np.random.normal(<span class="number">0</span>,<span class="number">0.01</span>,labels.size()))</span><br><span class="line"></span><br><span class="line">set_figsize()</span><br><span class="line"><span class="comment">#plt.scatter(features[:,0].numpy(),labels.numpy())</span></span><br><span class="line"><span class="comment">#plt.show()</span></span><br><span class="line">w=torch.tensor(np.random.normal(<span class="number">0</span>,<span class="number">0.01</span>,(num_inputs,<span class="number">1</span>)),dtype=torch.float64)</span><br><span class="line">b=torch.zeros(<span class="number">1</span>,dtype=torch.float64)</span><br><span class="line">w.requires_grad=<span class="literal">True</span></span><br><span class="line">b.requires_grad=<span class="literal">True</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">linml</span>(<span class="params">X,w,b</span>):</span><br><span class="line">    <span class="keyword">return</span> torch.mm(X,w)+b</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">MSEloss</span>(<span class="params">y,y_hat</span>):</span><br><span class="line">    <span class="keyword">return</span> (y_hat-y.view(y_hat.size()))**<span class="number">2</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">optimizer</span>(<span class="params">params,lr,batch_size</span>):</span><br><span class="line">    <span class="keyword">for</span> param <span class="keyword">in</span> params:</span><br><span class="line">        param.data-=lr*param.grad/batch_size</span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(num_epoches):</span><br><span class="line">    <span class="keyword">for</span> X,y <span class="keyword">in</span> data_iter(batch_size,features,labels):</span><br><span class="line">        l=MSEloss(y,linml(X,w,b)).<span class="built_in">sum</span>()</span><br><span class="line">        l.backward()</span><br><span class="line">        optimizer([w,b],lr,batch_size)</span><br><span class="line">        w.grad.data.zero_()</span><br><span class="line">        b.grad.data.zero_()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;第<span class="subst">&#123;epoch&#125;</span>轮的偏差为<span class="subst">&#123;l&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;true_w:<span class="subst">&#123;true_w&#125;</span>,true_b:<span class="subst">&#123;true_b&#125;</span>\n w:<span class="subst">&#123;w.data&#125;</span>,b:<span class="subst">&#123;b.data&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="简约实现："><a href="#简约实现：" class="headerlink" title="简约实现："></a>简约实现：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.utils.data <span class="keyword">as</span> Data</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">from</span> torch.nn <span class="keyword">import</span> init</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> d2lzh_pytorch <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">lr=<span class="number">0.03</span></span><br><span class="line">num_epoches=<span class="number">10</span></span><br><span class="line">batch_size=<span class="number">10</span></span><br><span class="line">num_inputs=<span class="number">2</span></span><br><span class="line">num_examples=<span class="number">1000</span></span><br><span class="line">true_w=[<span class="number">1.2</span>,<span class="number">3</span>]</span><br><span class="line">true_b=<span class="number">2.3</span></span><br><span class="line">features=torch.from_numpy(np.random.normal(<span class="number">0</span>,<span class="number">1</span>,(num_examples,num_inputs)))</span><br><span class="line">labels=features[:,<span class="number">0</span>]*true_w[<span class="number">0</span>]+features[:,<span class="number">1</span>]*true_w[<span class="number">1</span>]+true_b</span><br><span class="line">labels+=torch.from_numpy(np.random.normal(<span class="number">0</span>,<span class="number">0.01</span>,labels.size()))</span><br><span class="line"></span><br><span class="line">data_set=Data.TensorDataset(features,labels)</span><br><span class="line">data_iter=Data.DataLoader(data_set,batch_size,shuffle=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Linear_net</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,n_features</span>):</span><br><span class="line">        <span class="built_in">super</span>(Linear_net,self).__init__()</span><br><span class="line">        self.linear=nn.Linear(n_features,<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self,x</span>):</span><br><span class="line">        <span class="keyword">return</span> self.linear(x.<span class="built_in">float</span>())</span><br><span class="line">    </span><br><span class="line">net=Linear_net(num_inputs)</span><br><span class="line"><span class="built_in">print</span>(net)</span><br><span class="line">init.normal(net.linear.weight,mean=<span class="number">0</span>,std=<span class="number">0.01</span>)</span><br><span class="line">init.constant(net.linear.bias,val=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">loss=nn.MSELoss()</span><br><span class="line"></span><br><span class="line">optimizer=optim.SGD(net.parameters(),lr=<span class="number">0.03</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,num_epoches+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> X,y <span class="keyword">in</span> data_iter:</span><br><span class="line">        output=net(X)</span><br><span class="line">        l=loss(output,y.view(-<span class="number">1</span>,<span class="number">1</span>).<span class="built_in">float</span>())</span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        l.backward()</span><br><span class="line">        optimizer.step()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;第<span class="subst">&#123;epoch&#125;</span>轮,损失为<span class="subst">&#123;l.item()&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">dense=net.linear</span><br><span class="line"><span class="built_in">print</span>(dense.weight,dense.bias)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>ranger</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://rangertherefore.top/2024/07/14/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%9Aday1/">https://rangertherefore.top/2024/07/14/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%9Aday1/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="../../../06/07/%E5%B0%91%E5%B9%B4%E7%BB%B4%E7%89%B9%E4%B9%8B%E7%83%A6%E6%81%BC/">少年维特之烦恼</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© ranger | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

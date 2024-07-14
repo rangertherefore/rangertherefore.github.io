@@ -13,7 +13,7 @@
 
 
 
-<title>心理访谈 | Made on earth by human</title>
+<title>结构体 全局变量&amp;局部变量 宏 | Made on earth by human</title>
 
 
 
@@ -168,7 +168,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">心理访谈</h1>
+            <h1 class="post-title">结构体 全局变量&amp;局部变量 宏</h1>
             
                 <div class="post-meta">
                     
@@ -177,21 +177,37 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">六月 2, 2024&nbsp;&nbsp;10:53:26</a>
+                        Date: <a href="#">六月 4, 2024&nbsp;&nbsp;14:58:12</a>
                         </span>
                     
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="../../../../categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+                            
+                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <ul>
-<li>上次你开心的大笑是什么时候了</li>
-<li>上次你躲在被窝里哭泣是什么时候了</li>
-<li>为什么你总是不高兴，为什么呢</li>
-</ul>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%？？？:</span></span><br><span class="line"><span class="comment">%hhh</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%？？？:</span></span><br><span class="line"><span class="comment">%心理医生问我以后会不会考虑自杀</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%？？？:</span></span><br><span class="line"><span class="comment">%我说我已经把所有能失败的机会用完了</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%？？？:</span></span><br><span class="line"><span class="comment">%以后没机会失败了，我和她都大笑起来</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+            <p>Struct结构体：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> &#123; <span class="type">int</span> num; <span class="type">char</span> name[<span class="number">20</span>]; &#125; s; <span class="comment">/*可以省略TAG*/</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">student</span> &#123; <span class="type">int</span> num; <span class="type">char</span> name[<span class="number">20</span>]; &#125;;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">student</span> wang;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*也可以同时定义结构类型和结构变量*/</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">student</span> &#123; <span class="type">int</span> num; <span class="type">char</span> name[<span class="number">20</span>]; &#125; x=&#123;<span class="string">&quot;Tom&quot;</span>,<span class="number">50</span>&#125;,y=&#123;<span class="string">&quot;Jerry&quot;</span>,<span class="number">80</span>&#125;;</span><br></pre></td></tr></table></figure>
+<p>结构指针：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">sk</span>&#123; <span class="type">int</span> a; <span class="type">float</span> b; &#125; data, *p=&amp;data;</span><br><span class="line"></span><br><span class="line">p-&gt;a							<span class="comment">/*指向a*/</span></span><br></pre></td></tr></table></figure>
+<p>宏：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MA(x, y) (x * y)</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>宏的基本概念<br>宏名称：MA<br>宏参数：x 和 y<br>宏体：(x <em> y)<br>这意味着每当在代码中使用 MA(x, y) 时，预处理器会将其替换为 (x </em> y)。</li>
+</ol>
+<p>2.</p>
+<p>宏定义“#define DIV(a, b) a/b”，经DIV(x + 5, y - 5) 引用，替换展开后是（）。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x + <span class="number">5</span> / y - <span class="number">5</span>	<span class="comment">/*注意括号的优先级*/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">5</span>, y = <span class="number">7</span>;		<span class="comment">/*这里是全局变量*/</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">swap</span> <span class="params">( )</span>			<span class="comment">/*交换的是全局变量*/</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">      <span class="type">int</span> z ;</span><br><span class="line"></span><br><span class="line">      z = x ;  x = y ;  y = z ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">      <span class="type">int</span> x = <span class="number">3</span>, y = <span class="number">8</span>;</span><br><span class="line">      <span class="built_in">swap</span> ( ) ;</span><br><span class="line">      <span class="built_in">printf</span> (<span class="string">&quot;%d,%d \n&quot;</span>, x , y ) ;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>typedef是类型定义的意思。typedef 是为了使用这个结构体方便。<br>具体区别在于:<br>若struct node {}这样来定义的话。在申请node 的变量时，需要这样写，struct node n;<br>若用typedef，可以这样写，typedef struct node{}    NODE;</strong></p>
+<p><strong>在申请变量时就可以这样写，NODE n;<br>区别就在于使用时，是否可以省去struct这个关键字。</strong></p>
 
         </div>
 
@@ -206,7 +222,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="https://rangertherefore.top/2024/06/02/%E5%BF%83%E7%90%86%E8%AE%BF%E8%B0%88/">https://rangertherefore.top/2024/06/02/%E5%BF%83%E7%90%86%E8%AE%BF%E8%B0%88/</a></span>
+                        <span><a href="https://rangertherefore.top/2024/06/04/%E7%BB%93%E6%9E%84%E4%BD%93-%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F&%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F-%E5%AE%8F/">https://rangertherefore.top/2024/06/04/%E7%BB%93%E6%9E%84%E4%BD%93-%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F&%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F-%E5%AE%8F/</a></span>
                     </p>
                 
                 
@@ -239,10 +255,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="../../04/%E7%BB%93%E6%9E%84%E4%BD%93-%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F&%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F-%E5%AE%8F/">结构体 全局变量&局部变量 宏</a>
+                <a class="prev" rel="prev" href="../../07/%E5%B0%91%E5%B9%B4%E7%BB%B4%E7%89%B9%E4%B9%8B%E7%83%A6%E6%81%BC/">少年维特之烦恼</a>
             
             
-            <a class="next" rel="next" href="../../01/C%E8%AF%AD%E8%A8%80%E5%A4%8D%E4%B9%A0/">C语言复习</a>
+            <a class="next" rel="next" href="../../02/%E5%BF%83%E7%90%86%E8%AE%BF%E8%B0%88/">心理访谈</a>
             
         </section>
 
