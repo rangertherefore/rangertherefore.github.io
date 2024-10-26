@@ -12,22 +12,24 @@
         <meta name="author" content="Your Name">
       
       
+        <link rel="canonical" href="https://example.com/test/">
       
       
       
-      <link rel="icon" href="/assets/favicon.png">
+      
+      <link rel="icon" href="../assets/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
     
     
       
-        <title>My Documentation</title>
+        <title>画法几何笔记 - My Documentation</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.0253249f.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -46,7 +48,7 @@
       
     
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -81,7 +83,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="/." title="My Documentation" class="md-header__button md-logo" aria-label="My Documentation" data-md-component="logo">
+    <a href=".." title="My Documentation" class="md-header__button md-logo" aria-label="My Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -101,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              画法几何笔记
             
           </span>
         </div>
@@ -176,7 +178,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="My Documentation" class="md-nav__button md-logo" aria-label="My Documentation" data-md-component="logo">
+    <a href=".." title="My Documentation" class="md-nav__button md-logo" aria-label="My Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -194,7 +196,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -214,7 +216,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/about.md" class="md-nav__link">
+      <a href="../about.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -269,7 +271,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/docs/introduction.md" class="md-nav__link">
+      <a href="../docs/introduction.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -290,7 +292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/docs/usage.md" class="md-nav__link">
+      <a href="../docs/usage.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -339,8 +341,61 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+  <h1>画法几何笔记</h1>
+
+<p>之前参加工高班选拔，翘了2节画法几何课，翘课的时候他把进度推到了透视。回来听lxd老师的课属实是抽象，~~虽然老师很尽力的想让学生听懂，但似乎没啥效果~~。经过几节听不懂的坐牢一样画法几何课的龙场悟道，总算是靠自学赶上了进度~~，以下是我的自学笔记，可能自己的主观感受会比较多，希望对你有帮助。</p>
+<hr />
+<p>基础概念：</p>
+<ul>
+<li>
+<p>基面：建筑形体的地平面</p>
+</li>
+<li>
+<p>画面：我们所看到的透视图所在的平面</p>
+</li>
+<li>
+<p>视点：相当于人眼</p>
+</li>
+<li>
+<p>视平面/视平线：和H面平行和视点等高的平面/视平面和画面的交线</p>
+</li>
+<li>
+<p>一点透视/两点透视/三点透视：三者的主要区别在于到底有几个灭点，一般画的是前两种透视</p>
+</li>
+</ul>
+<p><img alt="" src="/images/透视图1.jpg" /></p>
+<p>灭点就是不平行于画面的直线会在画面上消失的点，这样说还是比较抽象，看下图：</p>
+<p><img alt="" src="/images/演示图.jpg" /></p>
+<p><img alt="" src="/images/演示图2.jpg" /></p>
+<p>一个兔子，沿着不平行和人相反的方向奔跑，兔子和人眼的连线，即视线，会不断上升，逐渐逼近于一个点，这也是很好理解的，你把一条无限长的直线上的点和视点连接，在向外无限延伸后，最终会产生平行于这条直线的效果。这就是灭点的来源。</p>
+<p>为什么要不平行于画面呢，就像这里面的兔子，如果它奔跑的方向和画面平行，它产生的直线上的点和视点会产生的是直线而不是点了，灭点也就无从谈起了。</p>
+<p><strong>视线法</strong>：</p>
+<p><img alt="" src="/images/视线法.jpg" /></p>
+<p><em>在这个立方体里，两个侧面的水平线为Y轴，会最终缩到灭点，而两个水平线和V面垂直，所以我们只需要通过做视点到视平线的垂线就可以获取灭点，而两个后面4个点的X坐标，我们通过视线和画面的交线获取。</em></p>
+<p><img alt="" src="/images/视线法2.jpg" /></p>
+<p>还是一个道理，我们找到了水平线ab在画面上消失的轨迹，通过在H面获取的X坐标，找到了透视图</p>
+<p><strong>真高线T.H：直线ab和平面V相交的交点N，过N作XO的垂线即为真高线，如果点位于画面上，那么就是它的真实高度</strong></p>
+<p>ab不是水平线时，情况大同小异，搞清楚原理就很好做了：</p>
+<p><img alt="" src="/images/视线法3.jpg" /></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -374,10 +429,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "/", "features": [], "search": "/assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
