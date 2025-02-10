@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="以高斯混合模型为例">
+<title>EM算法详细推导</title>
+
+<link rel='canonical' href='http://localhost:1313/p/em%E7%AE%97%E6%B3%95%E8%AF%A6%E7%BB%86%E6%8E%A8%E5%AF%BC/'>
+
+<link rel="stylesheet" href="/scss/style.min.195e91e147f0e477191ccce30e33afc67fb70195d9d69f770c4c817751886df8.css"><meta property='og:title' content="EM算法详细推导">
+<meta property='og:description' content="以高斯混合模型为例">
+<meta property='og:url' content='http://localhost:1313/p/em%E7%AE%97%E6%B3%95%E8%AF%A6%E7%BB%86%E6%8E%A8%E5%AF%BC/'>
+<meta property='og:site_name' content='随机漫步'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='机器学习' /><meta property='article:published_time' content='2025-01-28T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-01-28T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/y.jpg' />
+<meta name="twitter:title" content="EM算法详细推导">
+<meta name="twitter:description" content="以高斯混合模型为例"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/y.jpg' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/icon_hu17669071710399568777.png" width="300"
+                            height="276" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">随机漫步</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#em算法">EM算法</a></li>
+    <li><a href="#算法思路">算法思路</a></li>
+    <li><a href="#1-目标最大化对数似然函数"><strong>1. 目标：最大化对数似然函数</strong></a></li>
+    <li><a href="#2-e-步expectation-step"><strong>2. E 步（Expectation Step）</strong></a></li>
+    <li><a href="#3-m-步maximization-step"><strong>3. M 步（Maximization Step）</strong></a></li>
+    <li><a href="#1-更新均值--mu_k-"><em><strong>1. 更新均值 $ \mu_k $</strong></em></a></li>
+    <li><a href="#2-更新协方差矩阵-sigma_k-"><em><strong>2. 更新协方差矩阵 $\Sigma_k $</strong></em></a></li>
+    <li><a href="#3-更新混合权重--pi_k-"><em><strong>3. 更新混合权重 $ \pi_k $</strong></em></a></li>
+    <li><a href="#4-迭代过程"><strong>4. 迭代过程</strong></a></li>
+    <li><a href="#总结"><strong>总结</strong></a>
+      <ol>
+        <li><a href="#e步"><strong>E步</strong></a></li>
+        <li><a href="#m步"><strong>M步</strong></a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/em%E7%AE%97%E6%B3%95%E8%AF%A6%E7%BB%86%E6%8E%A8%E5%AF%BC/">
+                
+                    <img src="/y.jpg" loading="lazy" alt="Featured image of post EM算法详细推导" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%95%B0%E5%AD%A6/" >
+                数学
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/em%E7%AE%97%E6%B3%95%E8%AF%A6%E7%BB%86%E6%8E%A8%E5%AF%BC/">EM算法详细推导</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            以高斯混合模型为例
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jan 28, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 4 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="em算法详细推导">EM算法详细推导
+</h1><h2 id="em算法">EM算法
+</h2><p>step 1.根据目前参数估计期望</p>
+<p>step 2.最大化似然函数</p>
+<p>step 3.更新算法</p>
+<h2 id="算法思路">算法思路
+</h2><p>假设结果由k个高斯分布产生，$\mathcal{N}_i(\mu_i,\sigma_i)(i=1,2&hellip;k)$，系数为$\pi_i(i=1,2&hellip;k)$,结果为$x_j(j=1,2,&hellip;n)$,</p>
+<p>$P(x|\theta)=\sum_i a_i\phi(x|\theta)$,(其中$\phi$是高斯分布的密度函数)</p>
+<p>对于n元高斯分布，$f(x)=\frac{1}{\sqrt{(2\pi)^n\det|\Sigma|}}\exp(-\frac{1}{2}(x^T-\mu^T)\Sigma^{-1}(x-\mu))$</p>
+<blockquote class="alert alert-note">
+    <p>det:行列式</p>
+<p>$\Sigma$:协方阵，对角线为方差，非对角线为协方差，cov(X,Y)表示线性相关程度</p></blockquote>
+$$
+L(\theta)=\sum_jlogP(x_j|\theta),记Q(z)为隐变量z出现的概率,满足\sum q(z)=1\\改写为L(\theta)=\sum_j log\sum_z P(x_j,z|\theta) (z含各种情况)=\sum_j log\sum_z q(Z) \frac{ P(x_j,z|\theta)}{q(z)}\ge\sum_j \sum_zq(Z)log  \frac{ P(x_j,z|\theta)}{q(z)}
+$$<blockquote class="alert alert-important">
+    <p>由Jensen 不等式：$ f(\mathbb{E}[X]) \leq \mathbb{E}[f(X)] $,f为凹函数</p></blockquote>
+<p>相当于求$E[\log\frac{P(x_j,z|\theta)}{Q(z)}|\theta^{{i}}]$</p>
+<h2 id="1-目标最大化对数似然函数"><strong>1. 目标：最大化对数似然函数</strong>
+</h2>$$
+L(\theta) = \sum_j \log P(x_j | \theta)
+$$$$
+L(\theta) = \sum_j \log \sum_z P(x_j, z | \theta)
+$$$$
+\sum_z q(z) = 1
+$$$$
+L(\theta) = \sum_j \log \sum_z q(z) \frac{P(x_j, z | \theta)}{q(z)}
+$$$$
+\sum_j \log \sum_z q(z) \frac{P(x_j, z | \theta)}{q(z)} \geq \sum_j \sum_z q(z) \log \frac{P(x_j, z | \theta)}{q(z)}
+$$$$
+Q(\theta | \theta^{(t)}) = \sum_j \sum_z q(z) \log P(x_j, z | \theta)
+$$<hr>
+<blockquote class="alert alert-note">
+    <ul>
+<li><strong>先验概率 (Prior Probability)</strong>
+先验概率是指在观察数据或证据之前，根据已有知识或经验对事件发生可能性的主观评估。
+例如，在没有任何额外信息的情况下，你认为某人感染某种疾病的可能性是 1%。</li>
+<li><strong>后验概率 (Posterior Probability)</strong>
+后验概率是在观察数据或证据之后，根据新信息对事件发生可能性的更新评估。它是在先验概率的基础上结合新数据计算得出的。
+例如，经过医学检测后，结合检测结果重新评估某人感染该疾病的可能性。</li>
+</ul></blockquote>
+<h2 id="2-e-步expectation-step"><strong>2. E 步（Expectation Step）</strong>
+</h2>$$
+q(z) = P(z | x, \theta^{(t)})
+$$$$
+P(z | x, \theta^{(t)}) = \frac{P(x | z, \theta^{(t)}) P(z | \theta^{(t)})}{P(x | \theta^{(t)})}
+$$<p>其中：</p>
+<ul>
+<li>$P(z | \theta^{(t)}) $是隐变量的先验概率</li>
+<li>$ P(x | z, \theta^{(t)}) $ 是在给定隐变量 $ z $的情况下 $ x $ 的概率</li>
+</ul>
+$$
+P(x_j, z | \theta^{(t)}) = P(x_j | z, \theta^{(t)}) P(z | \theta^{(t)})
+$$$$
+P(z | x_j, \theta^{(t)}) = \frac{P(x_j | z, \theta^{(t)}) P(z | \theta^{(t)})}{\sum_k P(x_j | z_k, \theta^{(t)}) P(z_k | \theta^{(t)})}
+$$$$
+\gamma_{jk} = P(z_k | x_j, \theta^{(t)}) = \frac{\pi_k^{(t)} \mathcal{N}(x_j | \mu_k^{(t)}, \Sigma_k^{(t)})}{\sum_{k'} \pi_{k'}^{(t)} \mathcal{N}(x_j | \mu_{k'}^{(t)}, \Sigma_{k'}^{(t)})}
+$$<p>其中：</p>
+<ul>
+<li>$ \mathcal{N}(x | \mu_k, \Sigma_k) $ 是高斯密度函数</li>
+<li>$\pi_k^{(t)} $ 是第 $ k $ 个高斯分量的权重</li>
+<li>$ \gamma_{jk} $ 是数据点$ x_j $ 属于第$ k $ 个高斯分量的责任度</li>
+</ul>
+<hr>
+<blockquote class="alert alert-important">
+    <p>E步相当于我们已经固定了$q(z)$，所以M步我们不需要考虑$q(z)$，它已经相当于不变量了</p></blockquote>
+<h2 id="3-m-步maximization-step"><strong>3. M 步（Maximization Step）</strong>
+</h2>$$
+Q(\theta | \theta^{(t)}) = \sum_j \sum_z P(z | x_j, \theta^{(t)}) \log P(x_j, z | \theta)
+$$$$
+P(x_j, z | \theta) = P(x_j | z, \theta) P(z | \theta)
+$$$$
+Q(\theta | \theta^{(t)}) = \sum_j \sum_k \gamma_{jk} \log \left( P(x_j | z_k, \theta) P(z_k | \theta) \right)
+$$<p>对每个参数进行最大化：</p>
+<hr>
+<h2 id="1-更新均值--mu_k-"><em><strong>1. 更新均值 $ \mu_k $</strong></em>
+</h2>$$
+\sum_j P(z_k | x_j, \theta^{(t)}) \log P(x_j | z_k, \theta)
+$$$$
+\log P(x_j | z_k, \theta) = -\frac{1}{2} (x_j - \mu_k)^T \Sigma_k^{-1} (x_j - \mu_k) - \frac{1}{2} \log |\Sigma_k| - \frac{d}{2} \log(2\pi)
+$$$$
+Q(\mu_k) = \sum_j P(z_k | x_j, \theta^{(t)}) \left( -\frac{1}{2} (x_j - \mu_k)^T \Sigma_k^{-1} (x_j - \mu_k) \right)
+$$$$
+\frac{\partial Q}{\partial \mu_k} = \sum_j P(z_k | x_j, \theta^{(t)}) \Sigma_k^{-1} (x_j - \mu_k)
+$$$$
+\sum_j P(z_k | x_j, \theta^{(t)}) (x_j - \mu_k) = 0
+$$$$
+\mu_k^{(t+1)} = \frac{\sum_j P(z_k | x_j, \theta^{(t)}) x_j}{\sum_j P(z_k | x_j, \theta^{(t)})}
+$$<hr>
+<h2 id="2-更新协方差矩阵-sigma_k-"><em><strong>2. 更新协方差矩阵 $\Sigma_k $</strong></em>
+</h2>$$
+\sum_j P(z_k | x_j, \theta^{(t)}) \log P(x_j | z_k, \theta)
+$$$$
+Q(\Sigma_k) = \sum_j P(z_k | x_j, \theta^{(t)}) \left( -\frac{1}{2} (x_j - \mu_k)^T \Sigma_k^{-1} (x_j - \mu_k) - \frac{1}{2} \log |\Sigma_k| \right)
+$$$$
+\frac{\partial Q}{\partial \Sigma_k} = -\frac{1}{2} \sum_j P(z_k | x_j, \theta^{(t)}) \left( \Sigma_k^{-1} (x_j - \mu_k) (x_j - \mu_k)^T \Sigma_k^{-1} - \Sigma_k^{-1} \right)
+$$$$
+\Sigma_k^{(t+1)} = \frac{\sum_j P(z_k | x_j, \theta^{(t)}) (x_j - \mu_k)(x_j - \mu_k)^T}{\sum_j P(z_k | x_j, \theta^{(t)})}
+$$<hr>
+<h2 id="3-更新混合权重--pi_k-"><em><strong>3. 更新混合权重 $ \pi_k $</strong></em>
+</h2>$$
+\sum_j P(z_k | x_j, \theta^{(t)}) \log P(z_k | \theta)
+$$$$
+P(z_k | \theta) = \pi_k
+$$$$
+\sum_j P(z_k | x_j, \theta^{(t)}) \log \pi_k
+$$$$
+\sum_k \pi_k = 1
+$$$$
+\mathcal{L}(\pi_k, \lambda) = \sum_j \sum_k P(z_k | x_j, \theta^{(t)}) \log \pi_k + \lambda \left( \sum_k \pi_k - 1 \right)
+$$$$
+\frac{\partial \mathcal{L}}{\partial \pi_k} = \sum_j P(z_k | x_j, \theta^{(t)}) \frac{1}{\pi_k} + \lambda = 0
+$$$$
+\pi_k = -\frac{1}{\lambda} \sum_j P(z_k | x_j, \theta^{(t)})
+$$$$
+\sum_k \pi_k = 1
+$$$$
+\pi_k^{(t+1)} = \frac{1}{N} \sum_j P(z_k | x_j, \theta^{(t)})
+$$<p>
+其中  N 是数据点总数。</p>
+<h2 id="4-迭代过程"><strong>4. 迭代过程</strong>
+</h2><ul>
+<li><strong>E步</strong>: 计算 <strong>责任度 $ \gamma_{jk}$</strong>。</li>
+<li><strong>M步</strong>: 更新 <strong>$ \mu_k, \Sigma_k, \pi_k $</strong>。</li>
+<li>迭代直到收敛，即：
+$$
+  \|\theta^{(t+1)} - \theta^{(t)}\| < \epsilon
+  $$
+或达到最大迭代次数。</li>
+</ul>
+<hr>
+<h2 id="总结"><strong>总结</strong>
+</h2><h3 id="e步"><strong>E步</strong>
+</h3><ol>
+<li>计算后验概率：
+$$
+   P(z_k | x_j, \theta^{(t)}) = \frac{\pi_k^{(t)} \mathcal{N}(x_j | \mu_k^{(t)}, \Sigma_k^{(t)})}{\sum_{k'} \pi_{k'}^{(t)} \mathcal{N}(x_j | \mu_{k'}^{(t)}, \Sigma_{k'}^{(t)})}
+   $$</li>
+<li>计算 <strong>Q 函数</strong>。</li>
+</ol>
+<h3 id="m步"><strong>M步</strong>
+</h3><ol>
+<li>更新均值：
+$$
+   \mu_k^{(t+1)} = \frac{\sum_j P(z_k | x_j, \theta^{(t)}) x_j}{\sum_j P(z_k | x_j, \theta^{(t)})}
+   $$</li>
+<li>更新协方差：
+$$
+   \Sigma_k^{(t+1)} = \frac{\sum_j P(z_k | x_j, \theta^{(t)}) (x_j - \mu_k)(x_j - \mu_k)^T}{\sum_j P(z_k | x_j, \theta^{(t)})}
+   $$</li>
+<li>更新混合系数：
+$$
+   \pi_k^{(t+1)} = \frac{1}{N} \sum_j P(z_k | x_j, \theta^{(t)})
+   $$</li>
+</ol>
+<p>这样，EM算法不断更新参数，最终收敛到局部最优解。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%9B%BE%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-gcn/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/m1.jpg" loading="lazy" data-key="" data-hash="/m1.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">图卷积神经网络  (GCN)</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%B8%B8%E8%A7%81%E7%9F%A9%E9%98%B5%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC%E5%85%AC%E5%BC%8F/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/26.jpg" loading="lazy" data-key="" data-hash="/26.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">常见矩阵&amp;向量求导公式</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/ode%E5%85%AC%E5%BC%8F/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/hh.jpg" loading="lazy" data-key="" data-hash="/hh.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ODE公式</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E6%95%B0%E4%B9%98%E6%B3%95/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/sas.jpg" loading="lazy" data-key="" data-hash="/sas.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">拉格朗日数乘法</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 懒得起名字惹
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.29.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.a3214456d3b4614a29bad77e65bdd519d617645ff2b18281e34c9fd9447d04ad.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<script src=http://localhost:1313/background/sakura.js></script>
+
+    </body>
+</html>

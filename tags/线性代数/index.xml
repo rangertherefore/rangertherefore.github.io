@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>线性代数 on 随机漫步</title>
+        <link>http://localhost:1313/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/</link>
+        <description>Recent content in 线性代数 on 随机漫步</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>懒得起名字惹</copyright>
+        <lastBuildDate>Sun, 26 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>常见矩阵&amp;向量求导公式</title>
+        <link>http://localhost:1313/p/%E5%B8%B8%E8%A7%81%E7%9F%A9%E9%98%B5%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC%E5%85%AC%E5%BC%8F/</link>
+        <pubDate>Sun, 26 Jan 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/%E5%B8%B8%E8%A7%81%E7%9F%A9%E9%98%B5%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC%E5%85%AC%E5%BC%8F/</guid>
+        <description>&lt;img src="http://localhost:1313/26.jpg" alt="Featured image of post 常见矩阵&amp;向量求导公式" /&gt;&lt;h1 id=&#34;常见的矩阵求导公式及推导&#34;&gt;常见的矩阵求导公式及推导
+&lt;/h1&gt;&lt;h2 id=&#34;1-标量二次型求导&#34;&gt;1. 标量二次型求导
+&lt;/h2&gt;$$
+\frac{\partial x^T A x}{\partial x} = (A + A^T)x
+$$&lt;p&gt;&lt;strong&gt;推导：&lt;/strong&gt;&lt;/p&gt;
+$$
+x^T A x = \sum_{i} \sum_{j} x_i A_{ij} x_j
+$$$$
+\frac{\partial (x^T A x)}{\partial x_k} = \sum_{i} A_{ki} x_i + \sum_{j} A_{kj} x_j = \sum_{i} (A + A^T)_{ki} x_i
+$$$$
+\frac{\partial x^T A x}{\partial x} = (A + A^T)x
+$$&lt;hr&gt;
+&lt;h2 id=&#34;2-线性项求导&#34;&gt;2. 线性项求导
+&lt;/h2&gt;$$
+\frac{\partial a^T x}{\partial x} = a
+$$&lt;p&gt;&lt;strong&gt;推导：&lt;/strong&gt;&lt;/p&gt;
+$$
+a^T x = \sum_{i} a_i x_i
+$$$$
+\frac{\partial}{\partial x_k} \sum_{i} a_i x_i = a_k
+$$$$
+\frac{\partial a^T x}{\partial x} = a
+$$&lt;hr&gt;
+&lt;h2 id=&#34;3-矩阵-向量乘积求导&#34;&gt;3. 矩阵-向量乘积求导
+&lt;/h2&gt;$$
+\frac{\partial Ax}{\partial x} = A
+$$&lt;p&gt;&lt;strong&gt;推导：&lt;/strong&gt;&lt;/p&gt;
+$$
+Ax = \sum_{j} A_{ij} x_j
+$$$$
+\frac{\partial}{\partial x_k} \sum_{j} A_{ij} x_j = A_{ik}
+$$$$
+\frac{\partial Ax}{\partial x} = A
+$$&lt;hr&gt;
+&lt;h2 id=&#34;4-二次型向量偏差求导对称矩阵&#34;&gt;4. 二次型向量偏差求导（对称矩阵）
+&lt;/h2&gt;$$
+\frac{\partial (x - b)^T A (x - b)}{\partial x} = 2A(x - b)
+$$&lt;p&gt;
+&lt;em&gt;(假设 \( A \) 是对称矩阵)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推导：&lt;/strong&gt;&lt;/p&gt;
+$$
+(x - b)^T A (x - b) = x^T A x - 2 b^T A x + b^T A b
+$$$$
+2 A x - 2 A b
+$$$$
+\frac{\partial (x - b)^T A (x - b)}{\partial x} = 2A(x - b)
+$$&lt;hr&gt;
+&lt;h2 id=&#34;5-行列式求导&#34;&gt;5. 行列式求导
+&lt;/h2&gt;$$
+\frac{\partial \ln |X|}{\partial X} = X^{-1}
+$$&lt;p&gt;&lt;strong&gt;推导：&lt;/strong&gt;&lt;/p&gt;
+$$
+\ln |X| = \text{tr}(\ln X)
+$$$$
+\frac{\partial \text{tr}(\ln X)}{\partial X} = X^{-1}
+$$&lt;hr&gt;
+&lt;h2 id=&#34;6-迹的求导&#34;&gt;6. 迹的求导
+&lt;/h2&gt;$$
+\frac{\partial \text{tr}(AX)}{\partial X} = A^T
+$$&lt;p&gt;&lt;strong&gt;推导：&lt;/strong&gt;&lt;/p&gt;
+$$
+\text{tr}(AX) = \sum_{i} \sum_{j} A_{ij} X_{ji}
+$$$$
+\frac{\partial}{\partial X_{kl}} \sum_{i} \sum_{j} A_{ij} X_{ji} = A_{lk}
+$$$$
+\frac{\partial \text{tr}(AX)}{\partial X} = A^T
+$$&lt;hr&gt;
+&lt;h2 id=&#34;7-逆矩阵求导&#34;&gt;7. 逆矩阵求导
+&lt;/h2&gt;$$
+\frac{\partial X^{-1}}{\partial X} = -X^{-1} \otimes X^{-1}
+$$&lt;p&gt;&lt;strong&gt;推导：&lt;/strong&gt;&lt;/p&gt;
+$$
+X X^{-1} = I
+$$$$
+\frac{\partial (X X^{-1})}{\partial X} = 0 \Rightarrow X^{-1} \frac{\partial X}{\partial X} X^{-1} + \frac{\partial X^{-1}}{\partial X} X = 0
+$$$$
+\frac{\partial X^{-1}}{\partial X} = -X^{-1} \otimes X^{-1}
+$$&lt;hr&gt;
+&lt;p&gt;以上是常见的矩阵求导公式及其简要推导过程。&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

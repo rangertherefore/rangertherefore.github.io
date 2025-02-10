@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>公式 on 随机漫步</title>
+        <link>http://localhost:1313/tags/%E5%85%AC%E5%BC%8F/</link>
+        <description>Recent content in 公式 on 随机漫步</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>懒得起名字惹</copyright>
+        <lastBuildDate>Sun, 26 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/%E5%85%AC%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>常见矩阵&amp;向量求导公式</title>
+        <link>http://localhost:1313/p/%E5%B8%B8%E8%A7%81%E7%9F%A9%E9%98%B5%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC%E5%85%AC%E5%BC%8F/</link>
+        <pubDate>Sun, 26 Jan 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/%E5%B8%B8%E8%A7%81%E7%9F%A9%E9%98%B5%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC%E5%85%AC%E5%BC%8F/</guid>
+        <description>&lt;img src="http://localhost:1313/26.jpg" alt="Featured image of post 常见矩阵&amp;向量求导公式" /&gt;&lt;h1 id=&#34;常见的矩阵求导公式及推导&#34;&gt;常见的矩阵求导公式及推导
+&lt;/h1&gt;&lt;h2 id=&#34;1-标量二次型求导&#34;&gt;1. 标量二次型求导
+&lt;/h2&gt;$$
+\frac{\partial x^T A x}{\partial x} = (A + A^T)x
+$$&lt;p&gt;&lt;strong&gt;推导：&lt;/strong&gt;&lt;/p&gt;
+$$
+x^T A x = \sum_{i} \sum_{j} x_i A_{ij} x_j
+$$$$
+\frac{\partial (x^T A x)}{\partial x_k} = \sum_{i} A_{ki} x_i + \sum_{j} A_{kj} x_j = \sum_{i} (A + A^T)_{ki} x_i
+$$$$
+\frac{\partial x^T A x}{\partial x} = (A + A^T)x
+$$&lt;hr&gt;
+&lt;h2 id=&#34;2-线性项求导&#34;&gt;2. 线性项求导
+&lt;/h2&gt;$$
+\frac{\partial a^T x}{\partial x} = a
+$$&lt;p&gt;&lt;strong&gt;推导：&lt;/strong&gt;&lt;/p&gt;
+$$
+a^T x = \sum_{i} a_i x_i
+$$$$
+\frac{\partial}{\partial x_k} \sum_{i} a_i x_i = a_k
+$$$$
+\frac{\partial a^T x}{\partial x} = a
+$$&lt;hr&gt;
+&lt;h2 id=&#34;3-矩阵-向量乘积求导&#34;&gt;3. 矩阵-向量乘积求导
+&lt;/h2&gt;$$
+\frac{\partial Ax}{\partial x} = A
+$$&lt;p&gt;&lt;strong&gt;推导：&lt;/strong&gt;&lt;/p&gt;
+$$
+Ax = \sum_{j} A_{ij} x_j
+$$$$
+\frac{\partial}{\partial x_k} \sum_{j} A_{ij} x_j = A_{ik}
+$$$$
+\frac{\partial Ax}{\partial x} = A
+$$&lt;hr&gt;
+&lt;h2 id=&#34;4-二次型向量偏差求导对称矩阵&#34;&gt;4. 二次型向量偏差求导（对称矩阵）
+&lt;/h2&gt;$$
+\frac{\partial (x - b)^T A (x - b)}{\partial x} = 2A(x - b)
+$$&lt;p&gt;
+&lt;em&gt;(假设 \( A \) 是对称矩阵)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推导：&lt;/strong&gt;&lt;/p&gt;
+$$
+(x - b)^T A (x - b) = x^T A x - 2 b^T A x + b^T A b
+$$$$
+2 A x - 2 A b
+$$$$
+\frac{\partial (x - b)^T A (x - b)}{\partial x} = 2A(x - b)
+$$&lt;hr&gt;
+&lt;h2 id=&#34;5-行列式求导&#34;&gt;5. 行列式求导
+&lt;/h2&gt;$$
+\frac{\partial \ln |X|}{\partial X} = X^{-1}
+$$&lt;p&gt;&lt;strong&gt;推导：&lt;/strong&gt;&lt;/p&gt;
+$$
+\ln |X| = \text{tr}(\ln X)
+$$$$
+\frac{\partial \text{tr}(\ln X)}{\partial X} = X^{-1}
+$$&lt;hr&gt;
+&lt;h2 id=&#34;6-迹的求导&#34;&gt;6. 迹的求导
+&lt;/h2&gt;$$
+\frac{\partial \text{tr}(AX)}{\partial X} = A^T
+$$&lt;p&gt;&lt;strong&gt;推导：&lt;/strong&gt;&lt;/p&gt;
+$$
+\text{tr}(AX) = \sum_{i} \sum_{j} A_{ij} X_{ji}
+$$$$
+\frac{\partial}{\partial X_{kl}} \sum_{i} \sum_{j} A_{ij} X_{ji} = A_{lk}
+$$$$
+\frac{\partial \text{tr}(AX)}{\partial X} = A^T
+$$&lt;hr&gt;
+&lt;h2 id=&#34;7-逆矩阵求导&#34;&gt;7. 逆矩阵求导
+&lt;/h2&gt;$$
+\frac{\partial X^{-1}}{\partial X} = -X^{-1} \otimes X^{-1}
+$$&lt;p&gt;&lt;strong&gt;推导：&lt;/strong&gt;&lt;/p&gt;
+$$
+X X^{-1} = I
+$$$$
+\frac{\partial (X X^{-1})}{\partial X} = 0 \Rightarrow X^{-1} \frac{\partial X}{\partial X} X^{-1} + \frac{\partial X^{-1}}{\partial X} X = 0
+$$$$
+\frac{\partial X^{-1}}{\partial X} = -X^{-1} \otimes X^{-1}
+$$&lt;hr&gt;
+&lt;p&gt;以上是常见的矩阵求导公式及其简要推导过程。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>ODE公式</title>
+        <link>http://localhost:1313/p/ode%E5%85%AC%E5%BC%8F/</link>
+        <pubDate>Thu, 23 Jan 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/ode%E5%85%AC%E5%BC%8F/</guid>
+        <description>&lt;img src="http://localhost:1313/hh.jpg" alt="Featured image of post ODE公式" /&gt;&lt;p&gt;​&lt;/p&gt;
+&lt;h2 id=&#34;一阶线性方程&#34;&gt;一阶线性方程
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;可以直接分离变量&lt;/li&gt;
+&lt;li&gt;齐次的形式（$\frac{\mathrm{d}y}{\mathrm{d}x}=f(\frac{y}{x})$）&lt;/li&gt;
+&lt;li&gt;一阶线性非齐次方程   （$\frac{\mathrm{d} y}{\mathrm{d} x}+P(x)y=Q(x)$）&lt;/li&gt;
+&lt;li&gt;伯努利方程（$\frac{\mathrm{d} y}{\mathrm{d} x}+P(x)y=Q(x)y^{n}$）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+$$
+令u=\frac{y}{x},那么y=ux,\frac{\mathrm{d}y}{\mathrm{d}x}=\frac{\mathrm{d}(ux)}{\mathrm{d}x}=u+x\frac{\mathrm{d}u}{\mathrm{d}x}
+$$$$
+\frac{\mathrm{d}y}{y}=-P\cdot \mathrm{d}x
+$$$$
+\Leftrightarrow y=Ce^{-\int P dx}
+$$&lt;p&gt;​		(ii)Q$\ne$0 ，使用常数变异法$u=u(x)$,我们用它代替C&lt;/p&gt;
+$$
+于是,\frac{\mathrm{d}u}{\mathrm{d}x}=Qe^{\int P \mathrm{d}x},u=\int Qe^{\int P \mathrm{d}x} \mathrm{d}x+C&#39;
+$$$$
+带入得，y=e^{-\int P dx} \cdot(\int Qe^{\int P \mathrm{d}x} \mathrm{d}x+C&#39;)
+$$&lt;p&gt;第四个，伯努利方程，将左右都除以$y^{n}$就转化为了第三种形式&lt;/p&gt;
+$$
+y^{-n}\frac{\mathrm{d} y}{\mathrm{d} x}+P(x)y^{1-n}=Q(x)
+$$$$
+\Leftrightarrow \frac{1}{1-n}\frac{\mathrm{d} y^{1-n}}{\mathrm{d} x}+P(x)y^{1-n}=Q(x),再令z=y^{1-n}
+$$&lt;hr&gt;
+&lt;h2 id=&#34;全微分方程&#34;&gt;全微分方程
+&lt;/h2&gt;$$
+求：xy(y-xy&#39;)=x+yy&#39;,y(0)=\frac{\sqrt{2}}{2}
+$$$$
+\Leftrightarrow y&#39;=\frac{xy^{2}-x}{x^{2}y+y}，显然不是前面的形式
+$$$$
+\Leftrightarrow (xy^{2}-x)\mathrm{d}x-(x^{2}y+y)\mathrm{d}y=0
+$$$$
+\frac{\partial P}{\partial y}=2xy,\frac{\partial Q}{\partial x}=2xy,确认为全微分方程
+$$$$
+C=-\int_{0}^{y}y\mathrm{d}y+\int_{0}^{x}(xy^{2}-x)\mathrm{d}x=\frac{1}{2}x^{2}y^{2}-\frac{1}{2}x^{2}-\frac{1}{2}y^{2}
+$$$$
+带入得：\frac{1}{2}x^{2}y^{2}-\frac{1}{2}x^{2}-\frac{1}{2}y^{2}=-\frac{1}{4}
+$$&lt;hr&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.cc98.org/topic/5896256&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;题目来源&lt;/a&gt;&lt;/p&gt;
+$$
+\frac{\mathrm{d}y}{\mathrm{d}x}=-\frac{1}{4}y^2lnx\\
+-\frac{1}{y^2}\mathrm{d}y=\frac{1}{4}lnx\mathrm{d}x\\
+\frac{1}{y}=\frac{1}{4}x(lnx-1)+C\\
+y=\frac{4}{x(lnx-1)+C}
+$$$$
+(y^3+y)\mathrm{d}x=-x(y^2-1)\mathrm{d}y\\
+-\frac{1}{x}\mathrm{d}x=\frac{y^2-1}{y^3+y}\mathrm{d}y=\frac{y^2+1-2}{y^3+y}\mathrm{d}y=(\frac{1}{y}-\frac{2}{y(y^2+1)})\mathrm{d}y\\
+-\frac{1}{x}\mathrm{d}x=(-\frac{1}{y}+\frac{2y}{y^2+1})\mathrm{d}y\\
+\frac{y}{y^2+1}=x+C
+$$$$
+y=ue^{sinx},\frac{\mathrm{d}y}{\mathrm{d}x}=u&#39;e^{sinx}+ue^{sinx}cosx\\
+代入u&#39;=3x,u=\frac{3}{2}x^2+C\\
+y=(\frac{3}{2}x^2+C)e^{sinx},C=4\\
+y=(\frac{3}{2}x^2+4)e^{sinx}
+$$$$
+\frac{\mathrm{d}(\frac{1}{y})}{\mathrm{d}x}+2x\frac{1}{y}=e^{-x^2}cosx\\
+z=\frac{1}{y},\frac{\mathrm{d}z}{\mathrm{d}x}+2xz=e^{-x^2}cosx\\
+z=ue^{-x^2},\frac{\mathrm{d}z}{\mathrm{d}x}=u&#39;e^{-x^2}-2uxe^{x^2},u&#39;e^{-x^2}=e^{-x^2}cosx,u&#39;=cosx\\
+u=sinx+C,\therefore z=\frac{1}{y}=(sinx+C)e^{-x^2},y=\frac{1}{(sinx+C)e^{-x^2}}
+$$$$
+懒得写了，y&#39;=\frac{1}{2}e^{2y}+C_1,(C_1=0)\\
+-\frac{1}{2}e^{-2y}=\frac{1}{2}x+C_2(C_2=-\frac{1}{2})\\
+y=-\frac{1}{2}ln(1-x)
+$$</description>
+        </item>
+        <item>
+        <title>拉格朗日数乘法</title>
+        <link>http://localhost:1313/p/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E6%95%B0%E4%B9%98%E6%B3%95/</link>
+        <pubDate>Tue, 21 Jan 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E6%95%B0%E4%B9%98%E6%B3%95/</guid>
+        <description>&lt;img src="http://localhost:1313/sas.jpg" alt="Featured image of post 拉格朗日数乘法" /&gt;&lt;blockquote&gt;
+&lt;p&gt;参考西瓜书和某大佬blog，忘记博客地址了（手动狗头）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;拉格朗日数乘法&#34;&gt;拉格朗日数乘法：
+&lt;/h2&gt;$$
+对于m个等式以及n个不等式的约束，h_i(x)=0(i=1,2,...m),g_j(x)\le0(j=1,2,...,n)\\简记为:\\
+min\ f(x)\\s.t.\ h_i(x)=0(i=1,2,...m)\\g_j(x)\le0(j=1,2,...,n)\\
+$$&lt;h2 id=&#34;kkt条件&#34;&gt;KKT条件
+&lt;/h2&gt;$$
+对于g_j(x)\le0，我们引入KKT条件(Karush-Kuhn-Tucker)
+$$$$
+\lambda_j\ge0,g_j(x)\le0,\lambda_j g_j(x)=0
+$$&lt;h2 id=&#34;对偶条件&#34;&gt;对偶条件
+&lt;/h2&gt;&lt;p&gt;这个问题（或者说原始的带约束的形式）称作 &lt;strong&gt;primal problem&lt;/strong&gt;。如果你看过之前关于 SVM 的指导，那么肯定就知道了，相对应的还有一个 &lt;strong&gt;dual problem&lt;/strong&gt;，其形式非常类似，只是把 min 和 max 交换了一下：&lt;/p&gt;
+$$
+\max_{\lambda \geq 0, \nu} \min_{x} L(x, \lambda, \nu)
+$$&lt;p&gt;交换之后的 &lt;strong&gt;dual problem&lt;/strong&gt; 和原来的 &lt;strong&gt;primal problem&lt;/strong&gt; 并不相等，直观地，我们可以这样理解：解子问题的精力分布得最精细的那部分要明显。当然这是很不严格的说法，而是出于字数的限制以便简单说明，所以我们还是来看一下数学描述。和刚才的 \( x(z) \) 类似，我们也用一个记号来表示内层的这个函数，记：&lt;/p&gt;
+$$
+g(\lambda, \nu) = \min_{x} L(x, \lambda, \nu)
+$$&lt;p&gt;并称 \( g(\lambda, \nu)  \) 为 &lt;strong&gt;Lagrange dual function&lt;/strong&gt; （不要和 \( L \) 的 Lagrangian 混淆了）。\( g \) 有一个很好的性质就是它是 &lt;strong&gt;primal problem&lt;/strong&gt; 的一个下界。换句话说，如果 primal problem 的最小值记为 \( p^* \)，那么对于所有的 \( \lambda \geq 0 \)，我们有：&lt;/p&gt;
+$$
+g(\lambda, \nu) \leq p^*
+$$&lt;p&gt;因为对于极值点（实际上包括所有满足约束条件的点）\( x^* \)，注意到 \( \lambda \geq 0 \)，我们总是有：&lt;/p&gt;
+$$
+\sum_{i=1}^m \lambda_i f_i(x^*) + \sum_{i=1}^p \nu_i h_i(x^*) \leq 0
+$$&lt;p&gt;因此&lt;/p&gt;
+$$
+L(x^*, \lambda, \nu) = f_0(x^*) + \sum_{i=1}^m \lambda_i f_i(x^*) + \sum_{i=1}^p \nu_i h_i(x^*) \leq f_0(x^*) = p^*
+$$&lt;p&gt;于是&lt;/p&gt;
+$$
+g(\lambda, \nu) = \min_{x} L(x, \lambda, \nu) \leq L(x^*, \lambda, \nu) \leq f_0(x^*) = p^*
+$$&lt;p&gt;这样一来就确定了 \( g \) 的下界性质，于是&lt;/p&gt;
+$$
+\max_{\lambda \geq 0, \nu} g(\lambda, \nu)
+$$&lt;p&gt;
+实际上就是最大的下界。这是很自然的，因为得到了下界之后，我们自然就希望得到最好的下界，也就是最大的那一个——因为它离我们要逼近的值最近呀。记 &lt;strong&gt;dual problem&lt;/strong&gt; 的最优值为 \( d^* \) 的话，根据上面的推导，我们就得到了如下性质：&lt;/p&gt;
+$$
+d^* \leq p^*
+$$</description>
+        </item>
+        
+    </channel>
+</rss>
