@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>数学 on 我的博客</title>
+    <link>https://rangertherefore.top/tags/%E6%95%B0%E5%AD%A6/</link>
+    <description>Recent content in 数学 on 我的博客</description>
+    <image>
+      <title>我的博客</title>
+      <url>https://rangertherefore.top/images/cover.png</url>
+      <link>https://rangertherefore.top/images/cover.png</link>
+    </image>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 13 Nov 2025 16:15:13 +0800</lastBuildDate>
+    <atom:link href="https://rangertherefore.top/tags/%E6%95%B0%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>数学分析三 期中复习</title>
+      <link>https://rangertherefore.top/posts/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E6%9C%9F%E4%B8%AD/</link>
+      <pubDate>Thu, 13 Nov 2025 16:15:13 +0800</pubDate>
+      <guid>https://rangertherefore.top/posts/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E6%9C%9F%E4%B8%AD/</guid>
+      <description>&lt;h3 id=&#34;euclid-空间上的极限和连续&#34;&gt;Euclid 空间上的极限和连续&lt;/h3&gt;
+&lt;p&gt;为了研究多元函数的性质，我们首先要定义一个度量标准，进而给出极限以及连续的概念。&lt;/p&gt;
+&lt;p&gt;内积运算$&amp;lt;\cdot,\cdot&amp;gt;$:&lt;/p&gt;
+&lt;p&gt;$$
+&amp;lt;\mathbf{x},\mathbf{y}&amp;gt; = \sum_{i=1}^n x_i y_i
+$$&lt;/p&gt;
+&lt;p&gt;通过内积的&lt;strong&gt;正定性&lt;/strong&gt;以及&lt;strong&gt;线性性&lt;/strong&gt;，$&amp;lt;\mathbf{\lambda x +y},\mathbf{\lambda x +y}&amp;gt;\geq 0 \Rightarrow |&amp;lt;x,y&amp;gt;| \leq |x||y| \quad (Schwarz不等式)$&lt;/p&gt;
+&lt;p&gt;我们随后定义了&lt;strong&gt;距离的度量&lt;/strong&gt;，范数 $|\cdot|$:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$|x-y| = 0 \Leftrightarrow x = y$&lt;/li&gt;
+&lt;li&gt;$|x-y| = |y-x|$&lt;/li&gt;
+&lt;li&gt;$|x-z|\leq|x-y|+|y-z|$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;由&lt;em&gt;Schwarz不等式&lt;/em&gt;,我们可以推导三角不等式。&lt;/p&gt;
+&lt;p&gt;$\boxed{邻域}:O(a,\varepsilon) = {x\in R^n \Big| \ |x-a|&amp;lt;\varepsilon }$&lt;/p&gt;
+&lt;p&gt;在此基础上，我们定义了极限。可以发现&lt;strong&gt;收敛点列的唯一性、有界性都是成立的&lt;/strong&gt;。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;以下结论均对于$x$和集合$S$:&lt;/p&gt;
+&lt;p&gt;$\boxed{内点}:\exists \varepsilon &amp;gt; 0 ,O(x,\varepsilon) \subset S$&lt;/p&gt;
+&lt;p&gt;$\boxed{外点}:\exist \varepsilon &amp;gt; 0 ,O(x,\varepsilon) \subset S^c$&lt;/p&gt;
+&lt;p&gt;$\boxed{边界点}:\forall \varepsilon &amp;gt; 0 ,\exist x_1,x_2 \in O(x,\varepsilon) ,x_1\in S^c,x_2 \in S$&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
