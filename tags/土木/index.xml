@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>土木 on 我的博客</title>
+    <link>https://rangertherefore.top/tags/%E5%9C%9F%E6%9C%A8/</link>
+    <description>Recent content in 土木 on 我的博客</description>
+    <image>
+      <title>我的博客</title>
+      <url>https://rangertherefore.top/images/cover.png</url>
+      <link>https://rangertherefore.top/images/cover.png</link>
+    </image>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 21 Nov 2025 16:15:13 +0800</lastBuildDate>
+    <atom:link href="https://rangertherefore.top/tags/%E5%9C%9F%E6%9C%A8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>结构力学 期中复习</title>
+      <link>https://rangertherefore.top/posts/%E7%BB%93%E6%9E%84%E5%8A%9B%E5%AD%A6/</link>
+      <pubDate>Fri, 21 Nov 2025 16:15:13 +0800</pubDate>
+      <guid>https://rangertherefore.top/posts/%E7%BB%93%E6%9E%84%E5%8A%9B%E5%AD%A6/</guid>
+      <description>&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;说明：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;授课老师:陈水福&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;教材:结构力学 高等教育出版社 主编:陈水福&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;体系计算自由度&#34;&gt;体系计算自由度&lt;/h4&gt;
+&lt;p&gt;我们记$W$为计算自由度，当$W&amp;gt;0$,缺少足够的约束，为几何可变，$W=0$或$W&amp;lt;0$，仍需判断约束布置是否得当，否则仍可能为几何可变体系。&lt;/p&gt;
+&lt;p&gt;刚片法:
+$$
+W = 3m-c-r
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$m$:刚片数量&lt;/li&gt;
+&lt;li&gt;$c$:刚片间约束&lt;/li&gt;
+&lt;li&gt;$r$:支座约束&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;复铰约束 = $n-1$ = $n-1$个单铰&lt;/p&gt;
+&lt;p&gt;结点法:
+$$
+W = 2j-b-g-r
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$j$:结点数量&lt;/li&gt;
+&lt;li&gt;$b$:杆件数&lt;/li&gt;
+&lt;li&gt;$g$:铰接改为刚接的节点&lt;/li&gt;
+&lt;li&gt;$r$:支座链杆数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[!NOTE]&lt;/p&gt;
+&lt;p&gt;比如说一个刚架的，每个拐点都可以看为一个结点的两个杆件被刚接。见课本&lt;code&gt;P15&lt;/code&gt;例&lt;code&gt;2-1&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;结点法要注意的是和支座连接的结点不能遗漏。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;几何组成分析&#34;&gt;几何组成分析&lt;/h4&gt;
+&lt;p&gt;前置知识为两刚片和三刚片规则及其推广的情况，见课本&lt;code&gt;P18&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;对于三刚片的情况，关键看三铰(虚铰或实铰)是否共线，如三铰均位于无穷远的情况就是几何可变体系。两铰位于无穷远看和有限远处的铰是否共线，如果是，那么一般为瞬变。一铰无穷远看两铰连线和无穷远虚铰是否平行，如果共线则一般为瞬变。如课后习题&lt;code&gt;2-11 (b)&lt;/code&gt;是一铰无穷远且两有限远铰连线平行的情况，为瞬变体系。&lt;/p&gt;
+&lt;p&gt;常用方法有&lt;strong&gt;扩大刚片法和撤除刚片法&lt;/strong&gt;，相对比较容易，值得注意的是，可能撤除刚片过程中会遇到有多余约束的刚片体系，照样拆除即可，即使有部分是多余约束的，整体仍可能是几何可变的，见课本&lt;code&gt;P20 example 2-4&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;替代刚片法&lt;/strong&gt;，找一个三刚片或者两刚片规则的结构，进行判断，见课本&lt;code&gt;P22 例2-6&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;类似的题目有课后习题&lt;code&gt;2-5(e)&lt;/code&gt; 和&lt;code&gt;2-8(a) (d)&lt;/code&gt;都是和课本案例高度相似的。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;零截法&lt;/strong&gt;，在计算出$W=0$后，根据以上分析，我们仍无法判断是否是几何不变体系，它只是一个必要条件，可以通过零截法，假定支座具有反力，如果通过桁架结点的分析，推得只有零解，那么为几何不变体系(非零变量个数是几何可变时的体系自由度)。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;静定结构内力分析&#34;&gt;静定结构内力分析&lt;/h4&gt;
+&lt;h5 id=&#34;静定梁&#34;&gt;静定梁&lt;/h5&gt;
+&lt;p&gt;由静定结构解的唯一性，如果外力施加在基本部分&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;，那么它对附属部分是没有影响的。反之，附属部分必须依赖基本部分保持稳定。&lt;/p&gt;
+&lt;p&gt;因此，从求解顺序上，先分析基本部分对附属部分的作用力和力矩，再分析基本部分。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;从结构的角度&lt;/strong&gt;，要熟悉各种约束的特点，&lt;strong&gt;如铰接无法传递弯矩，但是可以传递剪力，还有弯矩图和剪力图的几何特点。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如课本&lt;code&gt;P37&lt;/code&gt;快捷法求解。&lt;/p&gt;
+&lt;p&gt;然后一个重要知识点是&lt;strong&gt;区段叠加法&lt;/strong&gt;来计算弯矩，包括弯矩的叠加(2种)、剪力的叠加(2种)、集度的叠加(1种)。&lt;/p&gt;
+&lt;p&gt;比如说课后习题&lt;code&gt;3-4&lt;/code&gt;使用了2种弯矩的叠加来求解。&lt;/p&gt;
+&lt;p&gt;在计算过程中，~~可以使用后续知识，如影响线、机动法~~~~如课后习题&lt;code&gt;3-5(c)&lt;/code&gt;可以使用影响线求出支座反力，然后用几何关系来计算，非常便捷。我只用了两分钟就完成了弯矩图的计算。还可以对照&lt;code&gt;3-9(a)&lt;/code&gt;也是可以使用快捷法快速求解。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h5 id=&#34;静定平面刚架&#34;&gt;静定平面刚架&lt;/h5&gt;
+&lt;p&gt;首先还是得求出支座反力，部分题目得先求出支座的竖直反力，然后对基本部分列平衡方程才可以求解。如例题&lt;code&gt;3-19&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;**极其重要的一点是，刚架可以看成简支梁来求解，之前简支梁的方法都是可以使用的。**需要注意的是，刚架的杆接可能无法提供水平剪力，在此处的弯矩图导数为$0$。是一个容易忽略的几何特征。如例题&lt;code&gt;3-22&lt;/code&gt;使用快捷法就有用到。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h5 id=&#34;静定平面桁架&#34;&gt;静定平面桁架&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;结点法:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;考虑到桁架和刚架的不同，我们一般从几何组成分析开始，按照拆除二元体的顺序进行分析，检查是否有零杆&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;，简化计算。当然第一步还是求解支座反力。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;截面法:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;和理论力学重叠了，省略。&lt;strong&gt;值得一提的是，由于桁架作用的性质，可以将均布荷载分解为集中荷载来求解&lt;/strong&gt;，如 &lt;code&gt;3-23&lt;/code&gt;。参考课本&lt;code&gt;P51&lt;/code&gt;,此时除了支座结点的受力情况不同，其余均相同。&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;指内力解具有唯一性的结构。见课本&lt;code&gt;P34&lt;/code&gt;。&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34;&gt;
+&lt;p&gt;桁架计算中内力为$0$的杆件。常常可以通过结点的特殊连接方式还有对称性判断，见&lt;code&gt;P48&lt;/code&gt;。&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+    </item>
+  </channel>
+</rss>

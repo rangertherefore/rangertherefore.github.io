@@ -1,0 +1,184 @@
+<!doctype html><html lang=en dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>结构力学 期中复习 | 我的博客</title><meta name=keywords content="土木"><meta name=description content="
+说明：
+授课老师:陈水福
+教材:结构力学 高等教育出版社 主编:陈水福
+
+体系计算自由度
+我们记$W$为计算自由度，当$W>0$,缺少足够的约束，为几何可变，$W=0$或$W<0$，仍需判断约束布置是否得当，否则仍可能为几何可变体系。
+刚片法:
+$$
+W = 3m-c-r
+$$
+
+$m$:刚片数量
+$c$:刚片间约束
+$r$:支座约束
+
+复铰约束 = $n-1$ = $n-1$个单铰
+结点法:
+$$
+W = 2j-b-g-r
+$$
+
+$j$:结点数量
+$b$:杆件数
+$g$:铰接改为刚接的节点
+$r$:支座链杆数
+
+
+[!NOTE]
+比如说一个刚架的，每个拐点都可以看为一个结点的两个杆件被刚接。见课本P15例2-1。
+结点法要注意的是和支座连接的结点不能遗漏。
+
+
+几何组成分析
+前置知识为两刚片和三刚片规则及其推广的情况，见课本P18。
+对于三刚片的情况，关键看三铰(虚铰或实铰)是否共线，如三铰均位于无穷远的情况就是几何可变体系。两铰位于无穷远看和有限远处的铰是否共线，如果是，那么一般为瞬变。一铰无穷远看两铰连线和无穷远虚铰是否平行，如果共线则一般为瞬变。如课后习题2-11 (b)是一铰无穷远且两有限远铰连线平行的情况，为瞬变体系。
+常用方法有扩大刚片法和撤除刚片法，相对比较容易，值得注意的是，可能撤除刚片过程中会遇到有多余约束的刚片体系，照样拆除即可，即使有部分是多余约束的，整体仍可能是几何可变的，见课本P20 example 2-4。
+替代刚片法，找一个三刚片或者两刚片规则的结构，进行判断，见课本P22 例2-6。
+类似的题目有课后习题2-5(e) 和2-8(a) (d)都是和课本案例高度相似的。
+零截法，在计算出$W=0$后，根据以上分析，我们仍无法判断是否是几何不变体系，它只是一个必要条件，可以通过零截法，假定支座具有反力，如果通过桁架结点的分析，推得只有零解，那么为几何不变体系(非零变量个数是几何可变时的体系自由度)。
+
+静定结构内力分析
+静定梁
+由静定结构解的唯一性，如果外力施加在基本部分1，那么它对附属部分是没有影响的。反之，附属部分必须依赖基本部分保持稳定。
+因此，从求解顺序上，先分析基本部分对附属部分的作用力和力矩，再分析基本部分。
+从结构的角度，要熟悉各种约束的特点，如铰接无法传递弯矩，但是可以传递剪力，还有弯矩图和剪力图的几何特点。
+如课本P37快捷法求解。
+然后一个重要知识点是区段叠加法来计算弯矩，包括弯矩的叠加(2种)、剪力的叠加(2种)、集度的叠加(1种)。
+比如说课后习题3-4使用了2种弯矩的叠加来求解。
+在计算过程中，~~可以使用后续知识，如影响线、机动法~~~~如课后习题3-5(c)可以使用影响线求出支座反力，然后用几何关系来计算，非常便捷。我只用了两分钟就完成了弯矩图的计算。还可以对照3-9(a)也是可以使用快捷法快速求解。
+
+静定平面刚架
+首先还是得求出支座反力，部分题目得先求出支座的竖直反力，然后对基本部分列平衡方程才可以求解。如例题3-19
+**极其重要的一点是，刚架可以看成简支梁来求解，之前简支梁的方法都是可以使用的。**需要注意的是，刚架的杆接可能无法提供水平剪力，在此处的弯矩图导数为$0$。是一个容易忽略的几何特征。如例题3-22使用快捷法就有用到。
+
+静定平面桁架
+结点法:
+考虑到桁架和刚架的不同，我们一般从几何组成分析开始，按照拆除二元体的顺序进行分析，检查是否有零杆2，简化计算。当然第一步还是求解支座反力。
+截面法:
+和理论力学重叠了，省略。值得一提的是，由于桁架作用的性质，可以将均布荷载分解为集中荷载来求解，如 3-23。参考课本P51,此时除了支座结点的受力情况不同，其余均相同。
+
+
+
+
+指内力解具有唯一性的结构。见课本P34。&#160;&#8617;&#xfe0e;
+
+
+桁架计算中内力为$0$的杆件。常常可以通过结点的特殊连接方式还有对称性判断，见P48。&#160;&#8617;&#xfe0e;
+
+
+"><meta name=author content="Dogleg"><link rel=canonical href=https://rangertherefore.top/posts/%E7%BB%93%E6%9E%84%E5%8A%9B%E5%AD%A6/><meta name=google-site-verification content="你的Google验证码"><meta name=yandex-verification content="你的Yandex验证码"><meta name=msvalidate.01 content="你的Bing验证码"><link crossorigin=anonymous href=/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css integrity="sha256-NDzEgLn/yPBMy+XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as=style><link rel=icon href=https://rangertherefore.top/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://rangertherefore.top/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://rangertherefore.top/favicon-32x32.png><link rel=apple-touch-icon href=https://rangertherefore.top/apple-touch-icon.png><link rel=mask-icon href=https://rangertherefore.top/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://rangertherefore.top/posts/%E7%BB%93%E6%9E%84%E5%8A%9B%E5%AD%A6/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}@media(prefers-color-scheme:light){.list::-webkit-scrollbar-thumb{border-color:var(--code-bg)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css integrity=sha384-bYdxxUwYipFNohQlHt0bjN/LCpueqWz13HufFEV1SUatKs1cm4L6fFgCi1jT643X crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.js integrity=sha384-Qsn9KnoKISj6dI8g7p1HBlNpVx0I8p1SvlwOldgi3IorMle61nQy4zEahWYtljaz crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/auto-render.min.js integrity=sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05 crossorigin=anonymous></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})})</script><meta property="og:url" content="https://rangertherefore.top/posts/%E7%BB%93%E6%9E%84%E5%8A%9B%E5%AD%A6/"><meta property="og:site_name" content="我的博客"><meta property="og:title" content="结构力学 期中复习"><meta property="og:description" content=" 说明：
+授课老师:陈水福
+教材:结构力学 高等教育出版社 主编:陈水福
+体系计算自由度 我们记$W$为计算自由度，当$W>0$,缺少足够的约束，为几何可变，$W=0$或$W<0$，仍需判断约束布置是否得当，否则仍可能为几何可变体系。
+刚片法: $$ W = 3m-c-r $$
+$m$:刚片数量 $c$:刚片间约束 $r$:支座约束 复铰约束 = $n-1$ = $n-1$个单铰
+结点法: $$ W = 2j-b-g-r $$
+$j$:结点数量 $b$:杆件数 $g$:铰接改为刚接的节点 $r$:支座链杆数 [!NOTE]
+比如说一个刚架的，每个拐点都可以看为一个结点的两个杆件被刚接。见课本P15例2-1。
+结点法要注意的是和支座连接的结点不能遗漏。
+几何组成分析 前置知识为两刚片和三刚片规则及其推广的情况，见课本P18。
+对于三刚片的情况，关键看三铰(虚铰或实铰)是否共线，如三铰均位于无穷远的情况就是几何可变体系。两铰位于无穷远看和有限远处的铰是否共线，如果是，那么一般为瞬变。一铰无穷远看两铰连线和无穷远虚铰是否平行，如果共线则一般为瞬变。如课后习题2-11 (b)是一铰无穷远且两有限远铰连线平行的情况，为瞬变体系。
+常用方法有扩大刚片法和撤除刚片法，相对比较容易，值得注意的是，可能撤除刚片过程中会遇到有多余约束的刚片体系，照样拆除即可，即使有部分是多余约束的，整体仍可能是几何可变的，见课本P20 example 2-4。
+替代刚片法，找一个三刚片或者两刚片规则的结构，进行判断，见课本P22 例2-6。
+类似的题目有课后习题2-5(e) 和2-8(a) (d)都是和课本案例高度相似的。
+零截法，在计算出$W=0$后，根据以上分析，我们仍无法判断是否是几何不变体系，它只是一个必要条件，可以通过零截法，假定支座具有反力，如果通过桁架结点的分析，推得只有零解，那么为几何不变体系(非零变量个数是几何可变时的体系自由度)。
+静定结构内力分析 静定梁 由静定结构解的唯一性，如果外力施加在基本部分1，那么它对附属部分是没有影响的。反之，附属部分必须依赖基本部分保持稳定。
+因此，从求解顺序上，先分析基本部分对附属部分的作用力和力矩，再分析基本部分。
+从结构的角度，要熟悉各种约束的特点，如铰接无法传递弯矩，但是可以传递剪力，还有弯矩图和剪力图的几何特点。
+如课本P37快捷法求解。
+然后一个重要知识点是区段叠加法来计算弯矩，包括弯矩的叠加(2种)、剪力的叠加(2种)、集度的叠加(1种)。
+比如说课后习题3-4使用了2种弯矩的叠加来求解。
+在计算过程中，~~可以使用后续知识，如影响线、机动法~~~~如课后习题3-5(c)可以使用影响线求出支座反力，然后用几何关系来计算，非常便捷。我只用了两分钟就完成了弯矩图的计算。还可以对照3-9(a)也是可以使用快捷法快速求解。
+静定平面刚架 首先还是得求出支座反力，部分题目得先求出支座的竖直反力，然后对基本部分列平衡方程才可以求解。如例题3-19
+**极其重要的一点是，刚架可以看成简支梁来求解，之前简支梁的方法都是可以使用的。**需要注意的是，刚架的杆接可能无法提供水平剪力，在此处的弯矩图导数为$0$。是一个容易忽略的几何特征。如例题3-22使用快捷法就有用到。
+静定平面桁架 结点法:
+考虑到桁架和刚架的不同，我们一般从几何组成分析开始，按照拆除二元体的顺序进行分析，检查是否有零杆2，简化计算。当然第一步还是求解支座反力。
+截面法:
+和理论力学重叠了，省略。值得一提的是，由于桁架作用的性质，可以将均布荷载分解为集中荷载来求解，如 3-23。参考课本P51,此时除了支座结点的受力情况不同，其余均相同。
+指内力解具有唯一性的结构。见课本P34。 ↩︎
+桁架计算中内力为$0$的杆件。常常可以通过结点的特殊连接方式还有对称性判断，见P48。 ↩︎"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-11-21T16:15:13+08:00"><meta property="article:modified_time" content="2025-11-21T16:15:13+08:00"><meta property="article:tag" content="土木"><meta property="og:image" content="https://rangertherefore.top/images/cover.png"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://rangertherefore.top/images/cover.png"><meta name=twitter:title content="结构力学 期中复习"><meta name=twitter:description content="
+说明：
+授课老师:陈水福
+教材:结构力学 高等教育出版社 主编:陈水福
+
+体系计算自由度
+我们记$W$为计算自由度，当$W>0$,缺少足够的约束，为几何可变，$W=0$或$W<0$，仍需判断约束布置是否得当，否则仍可能为几何可变体系。
+刚片法:
+$$
+W = 3m-c-r
+$$
+
+$m$:刚片数量
+$c$:刚片间约束
+$r$:支座约束
+
+复铰约束 = $n-1$ = $n-1$个单铰
+结点法:
+$$
+W = 2j-b-g-r
+$$
+
+$j$:结点数量
+$b$:杆件数
+$g$:铰接改为刚接的节点
+$r$:支座链杆数
+
+
+[!NOTE]
+比如说一个刚架的，每个拐点都可以看为一个结点的两个杆件被刚接。见课本P15例2-1。
+结点法要注意的是和支座连接的结点不能遗漏。
+
+
+几何组成分析
+前置知识为两刚片和三刚片规则及其推广的情况，见课本P18。
+对于三刚片的情况，关键看三铰(虚铰或实铰)是否共线，如三铰均位于无穷远的情况就是几何可变体系。两铰位于无穷远看和有限远处的铰是否共线，如果是，那么一般为瞬变。一铰无穷远看两铰连线和无穷远虚铰是否平行，如果共线则一般为瞬变。如课后习题2-11 (b)是一铰无穷远且两有限远铰连线平行的情况，为瞬变体系。
+常用方法有扩大刚片法和撤除刚片法，相对比较容易，值得注意的是，可能撤除刚片过程中会遇到有多余约束的刚片体系，照样拆除即可，即使有部分是多余约束的，整体仍可能是几何可变的，见课本P20 example 2-4。
+替代刚片法，找一个三刚片或者两刚片规则的结构，进行判断，见课本P22 例2-6。
+类似的题目有课后习题2-5(e) 和2-8(a) (d)都是和课本案例高度相似的。
+零截法，在计算出$W=0$后，根据以上分析，我们仍无法判断是否是几何不变体系，它只是一个必要条件，可以通过零截法，假定支座具有反力，如果通过桁架结点的分析，推得只有零解，那么为几何不变体系(非零变量个数是几何可变时的体系自由度)。
+
+静定结构内力分析
+静定梁
+由静定结构解的唯一性，如果外力施加在基本部分1，那么它对附属部分是没有影响的。反之，附属部分必须依赖基本部分保持稳定。
+因此，从求解顺序上，先分析基本部分对附属部分的作用力和力矩，再分析基本部分。
+从结构的角度，要熟悉各种约束的特点，如铰接无法传递弯矩，但是可以传递剪力，还有弯矩图和剪力图的几何特点。
+如课本P37快捷法求解。
+然后一个重要知识点是区段叠加法来计算弯矩，包括弯矩的叠加(2种)、剪力的叠加(2种)、集度的叠加(1种)。
+比如说课后习题3-4使用了2种弯矩的叠加来求解。
+在计算过程中，~~可以使用后续知识，如影响线、机动法~~~~如课后习题3-5(c)可以使用影响线求出支座反力，然后用几何关系来计算，非常便捷。我只用了两分钟就完成了弯矩图的计算。还可以对照3-9(a)也是可以使用快捷法快速求解。
+
+静定平面刚架
+首先还是得求出支座反力，部分题目得先求出支座的竖直反力，然后对基本部分列平衡方程才可以求解。如例题3-19
+**极其重要的一点是，刚架可以看成简支梁来求解，之前简支梁的方法都是可以使用的。**需要注意的是，刚架的杆接可能无法提供水平剪力，在此处的弯矩图导数为$0$。是一个容易忽略的几何特征。如例题3-22使用快捷法就有用到。
+
+静定平面桁架
+结点法:
+考虑到桁架和刚架的不同，我们一般从几何组成分析开始，按照拆除二元体的顺序进行分析，检查是否有零杆2，简化计算。当然第一步还是求解支座反力。
+截面法:
+和理论力学重叠了，省略。值得一提的是，由于桁架作用的性质，可以将均布荷载分解为集中荷载来求解，如 3-23。参考课本P51,此时除了支座结点的受力情况不同，其余均相同。
+
+
+
+
+指内力解具有唯一性的结构。见课本P34。&#160;&#8617;&#xfe0e;
+
+
+桁架计算中内力为$0$的杆件。常常可以通过结点的特殊连接方式还有对称性判断，见P48。&#160;&#8617;&#xfe0e;
+
+
+"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://rangertherefore.top/posts/"},{"@type":"ListItem","position":2,"name":"结构力学 期中复习","item":"https://rangertherefore.top/posts/%E7%BB%93%E6%9E%84%E5%8A%9B%E5%AD%A6/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"结构力学 期中复习","name":"结构力学 期中复习","description":" 说明：\n授课老师:陈水福\n教材:结构力学 高等教育出版社 主编:陈水福\n体系计算自由度 我们记$W$为计算自由度，当$W\u0026gt;0$,缺少足够的约束，为几何可变，$W=0$或$W\u0026lt;0$，仍需判断约束布置是否得当，否则仍可能为几何可变体系。\n刚片法: $$ W = 3m-c-r $$\n$m$:刚片数量 $c$:刚片间约束 $r$:支座约束 复铰约束 = $n-1$ = $n-1$个单铰\n结点法: $$ W = 2j-b-g-r $$\n$j$:结点数量 $b$:杆件数 $g$:铰接改为刚接的节点 $r$:支座链杆数 [!NOTE]\n比如说一个刚架的，每个拐点都可以看为一个结点的两个杆件被刚接。见课本P15例2-1。\n结点法要注意的是和支座连接的结点不能遗漏。\n几何组成分析 前置知识为两刚片和三刚片规则及其推广的情况，见课本P18。\n对于三刚片的情况，关键看三铰(虚铰或实铰)是否共线，如三铰均位于无穷远的情况就是几何可变体系。两铰位于无穷远看和有限远处的铰是否共线，如果是，那么一般为瞬变。一铰无穷远看两铰连线和无穷远虚铰是否平行，如果共线则一般为瞬变。如课后习题2-11 (b)是一铰无穷远且两有限远铰连线平行的情况，为瞬变体系。\n常用方法有扩大刚片法和撤除刚片法，相对比较容易，值得注意的是，可能撤除刚片过程中会遇到有多余约束的刚片体系，照样拆除即可，即使有部分是多余约束的，整体仍可能是几何可变的，见课本P20 example 2-4。\n替代刚片法，找一个三刚片或者两刚片规则的结构，进行判断，见课本P22 例2-6。\n类似的题目有课后习题2-5(e) 和2-8(a) (d)都是和课本案例高度相似的。\n零截法，在计算出$W=0$后，根据以上分析，我们仍无法判断是否是几何不变体系，它只是一个必要条件，可以通过零截法，假定支座具有反力，如果通过桁架结点的分析，推得只有零解，那么为几何不变体系(非零变量个数是几何可变时的体系自由度)。\n静定结构内力分析 静定梁 由静定结构解的唯一性，如果外力施加在基本部分1，那么它对附属部分是没有影响的。反之，附属部分必须依赖基本部分保持稳定。\n因此，从求解顺序上，先分析基本部分对附属部分的作用力和力矩，再分析基本部分。\n从结构的角度，要熟悉各种约束的特点，如铰接无法传递弯矩，但是可以传递剪力，还有弯矩图和剪力图的几何特点。\n如课本P37快捷法求解。\n然后一个重要知识点是区段叠加法来计算弯矩，包括弯矩的叠加(2种)、剪力的叠加(2种)、集度的叠加(1种)。\n比如说课后习题3-4使用了2种弯矩的叠加来求解。\n在计算过程中，~~可以使用后续知识，如影响线、机动法~~~~如课后习题3-5(c)可以使用影响线求出支座反力，然后用几何关系来计算，非常便捷。我只用了两分钟就完成了弯矩图的计算。还可以对照3-9(a)也是可以使用快捷法快速求解。\n静定平面刚架 首先还是得求出支座反力，部分题目得先求出支座的竖直反力，然后对基本部分列平衡方程才可以求解。如例题3-19\n**极其重要的一点是，刚架可以看成简支梁来求解，之前简支梁的方法都是可以使用的。**需要注意的是，刚架的杆接可能无法提供水平剪力，在此处的弯矩图导数为$0$。是一个容易忽略的几何特征。如例题3-22使用快捷法就有用到。\n静定平面桁架 结点法:\n考虑到桁架和刚架的不同，我们一般从几何组成分析开始，按照拆除二元体的顺序进行分析，检查是否有零杆2，简化计算。当然第一步还是求解支座反力。\n截面法:\n和理论力学重叠了，省略。值得一提的是，由于桁架作用的性质，可以将均布荷载分解为集中荷载来求解，如 3-23。参考课本P51,此时除了支座结点的受力情况不同，其余均相同。\n指内力解具有唯一性的结构。见课本P34。\u0026#160;\u0026#x21a9;\u0026#xfe0e;\n桁架计算中内力为$0$的杆件。常常可以通过结点的特殊连接方式还有对称性判断，见P48。\u0026#160;\u0026#x21a9;\u0026#xfe0e;\n","keywords":["土木"],"articleBody":" 说明：\n授课老师:陈水福\n教材:结构力学 高等教育出版社 主编:陈水福\n体系计算自由度 我们记$W$为计算自由度，当$W\u003e0$,缺少足够的约束，为几何可变，$W=0$或$W\u003c0$，仍需判断约束布置是否得当，否则仍可能为几何可变体系。\n刚片法: $$ W = 3m-c-r $$\n$m$:刚片数量 $c$:刚片间约束 $r$:支座约束 复铰约束 = $n-1$ = $n-1$个单铰\n结点法: $$ W = 2j-b-g-r $$\n$j$:结点数量 $b$:杆件数 $g$:铰接改为刚接的节点 $r$:支座链杆数 [!NOTE]\n比如说一个刚架的，每个拐点都可以看为一个结点的两个杆件被刚接。见课本P15例2-1。\n结点法要注意的是和支座连接的结点不能遗漏。\n几何组成分析 前置知识为两刚片和三刚片规则及其推广的情况，见课本P18。\n对于三刚片的情况，关键看三铰(虚铰或实铰)是否共线，如三铰均位于无穷远的情况就是几何可变体系。两铰位于无穷远看和有限远处的铰是否共线，如果是，那么一般为瞬变。一铰无穷远看两铰连线和无穷远虚铰是否平行，如果共线则一般为瞬变。如课后习题2-11 (b)是一铰无穷远且两有限远铰连线平行的情况，为瞬变体系。\n常用方法有扩大刚片法和撤除刚片法，相对比较容易，值得注意的是，可能撤除刚片过程中会遇到有多余约束的刚片体系，照样拆除即可，即使有部分是多余约束的，整体仍可能是几何可变的，见课本P20 example 2-4。\n替代刚片法，找一个三刚片或者两刚片规则的结构，进行判断，见课本P22 例2-6。\n类似的题目有课后习题2-5(e) 和2-8(a) (d)都是和课本案例高度相似的。\n零截法，在计算出$W=0$后，根据以上分析，我们仍无法判断是否是几何不变体系，它只是一个必要条件，可以通过零截法，假定支座具有反力，如果通过桁架结点的分析，推得只有零解，那么为几何不变体系(非零变量个数是几何可变时的体系自由度)。\n静定结构内力分析 静定梁 由静定结构解的唯一性，如果外力施加在基本部分1，那么它对附属部分是没有影响的。反之，附属部分必须依赖基本部分保持稳定。\n因此，从求解顺序上，先分析基本部分对附属部分的作用力和力矩，再分析基本部分。\n从结构的角度，要熟悉各种约束的特点，如铰接无法传递弯矩，但是可以传递剪力，还有弯矩图和剪力图的几何特点。\n如课本P37快捷法求解。\n然后一个重要知识点是区段叠加法来计算弯矩，包括弯矩的叠加(2种)、剪力的叠加(2种)、集度的叠加(1种)。\n比如说课后习题3-4使用了2种弯矩的叠加来求解。\n在计算过程中，~~可以使用后续知识，如影响线、机动法~~~~如课后习题3-5(c)可以使用影响线求出支座反力，然后用几何关系来计算，非常便捷。我只用了两分钟就完成了弯矩图的计算。还可以对照3-9(a)也是可以使用快捷法快速求解。\n静定平面刚架 首先还是得求出支座反力，部分题目得先求出支座的竖直反力，然后对基本部分列平衡方程才可以求解。如例题3-19\n**极其重要的一点是，刚架可以看成简支梁来求解，之前简支梁的方法都是可以使用的。**需要注意的是，刚架的杆接可能无法提供水平剪力，在此处的弯矩图导数为$0$。是一个容易忽略的几何特征。如例题3-22使用快捷法就有用到。\n静定平面桁架 结点法:\n考虑到桁架和刚架的不同，我们一般从几何组成分析开始，按照拆除二元体的顺序进行分析，检查是否有零杆2，简化计算。当然第一步还是求解支座反力。\n截面法:\n和理论力学重叠了，省略。值得一提的是，由于桁架作用的性质，可以将均布荷载分解为集中荷载来求解，如 3-23。参考课本P51,此时除了支座结点的受力情况不同，其余均相同。\n指内力解具有唯一性的结构。见课本P34。 ↩︎\n桁架计算中内力为$0$的杆件。常常可以通过结点的特殊连接方式还有对称性判断，见P48。 ↩︎\n","wordCount":"67","inLanguage":"en","image":"https://rangertherefore.top/images/cover.png","datePublished":"2025-11-21T16:15:13+08:00","dateModified":"2025-11-21T16:15:13+08:00","author":{"@type":"Person","name":"Dogleg"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://rangertherefore.top/posts/%E7%BB%93%E6%9E%84%E5%8A%9B%E5%AD%A6/"},"publisher":{"@type":"Organization","name":"我的博客","logo":{"@type":"ImageObject","url":"https://rangertherefore.top/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=nav><div class=logo><a href=https://rangertherefore.top/ accesskey=h title="主页 (Alt + H)"><img src=https://rangertherefore.top/apple-touch-icon.png alt aria-label=logo height=35>主页</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://rangertherefore.top/tags/ title=标签><span>标签</span></a></li><li><a href=https://rangertherefore.top/search/ title="搜索 (Alt + /)" accesskey=/><span>搜索</span></a></li><li><a href=https://rangertherefore.top/about/ title=关于><span>关于</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">结构力学 期中复习</h1><div class=post-meta><span title='2025-11-21 16:15:13 +0800 CST'>2025年11月21日</span>&nbsp;·&nbsp;<span>1 min</span>&nbsp;·&nbsp;<span>67 words</span>&nbsp;·&nbsp;<span>Dogleg</span></div></header><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><nav id=TableOfContents><ul><li><ul><li></li></ul></li></ul></nav></div></details></div><div class=post-content><hr><p><strong>说明：</strong></p><p><strong>授课老师:陈水福</strong></p><p><strong>教材:结构力学 高等教育出版社 主编:陈水福</strong></p><hr><h4 id=体系计算自由度>体系计算自由度<a hidden class=anchor aria-hidden=true href=#体系计算自由度>#</a></h4><p>我们记$W$为计算自由度，当$W>0$,缺少足够的约束，为几何可变，$W=0$或$W&lt;0$，仍需判断约束布置是否得当，否则仍可能为几何可变体系。</p><p>刚片法:
+$$
+W = 3m-c-r
+$$</p><ul><li>$m$:刚片数量</li><li>$c$:刚片间约束</li><li>$r$:支座约束</li></ul><p>复铰约束 = $n-1$ = $n-1$个单铰</p><p>结点法:
+$$
+W = 2j-b-g-r
+$$</p><ul><li>$j$:结点数量</li><li>$b$:杆件数</li><li>$g$:铰接改为刚接的节点</li><li>$r$:支座链杆数</li></ul><blockquote><p>[!NOTE]</p><p>比如说一个刚架的，每个拐点都可以看为一个结点的两个杆件被刚接。见课本<code>P15</code>例<code>2-1</code>。</p><p>结点法要注意的是和支座连接的结点不能遗漏。</p></blockquote><hr><h4 id=几何组成分析>几何组成分析<a hidden class=anchor aria-hidden=true href=#几何组成分析>#</a></h4><p>前置知识为两刚片和三刚片规则及其推广的情况，见课本<code>P18</code>。</p><p>对于三刚片的情况，关键看三铰(虚铰或实铰)是否共线，如三铰均位于无穷远的情况就是几何可变体系。两铰位于无穷远看和有限远处的铰是否共线，如果是，那么一般为瞬变。一铰无穷远看两铰连线和无穷远虚铰是否平行，如果共线则一般为瞬变。如课后习题<code>2-11 (b)</code>是一铰无穷远且两有限远铰连线平行的情况，为瞬变体系。</p><p>常用方法有<strong>扩大刚片法和撤除刚片法</strong>，相对比较容易，值得注意的是，可能撤除刚片过程中会遇到有多余约束的刚片体系，照样拆除即可，即使有部分是多余约束的，整体仍可能是几何可变的，见课本<code>P20 example 2-4</code>。</p><p><strong>替代刚片法</strong>，找一个三刚片或者两刚片规则的结构，进行判断，见课本<code>P22 例2-6</code>。</p><p>类似的题目有课后习题<code>2-5(e)</code> 和<code>2-8(a) (d)</code>都是和课本案例高度相似的。</p><p><strong>零截法</strong>，在计算出$W=0$后，根据以上分析，我们仍无法判断是否是几何不变体系，它只是一个必要条件，可以通过零截法，假定支座具有反力，如果通过桁架结点的分析，推得只有零解，那么为几何不变体系(非零变量个数是几何可变时的体系自由度)。</p><hr><h4 id=静定结构内力分析>静定结构内力分析<a hidden class=anchor aria-hidden=true href=#静定结构内力分析>#</a></h4><h5 id=静定梁>静定梁<a hidden class=anchor aria-hidden=true href=#静定梁>#</a></h5><p>由静定结构解的唯一性，如果外力施加在基本部分<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>，那么它对附属部分是没有影响的。反之，附属部分必须依赖基本部分保持稳定。</p><p>因此，从求解顺序上，先分析基本部分对附属部分的作用力和力矩，再分析基本部分。</p><p><strong>从结构的角度</strong>，要熟悉各种约束的特点，<strong>如铰接无法传递弯矩，但是可以传递剪力，还有弯矩图和剪力图的几何特点。</strong></p><p>如课本<code>P37</code>快捷法求解。</p><p>然后一个重要知识点是<strong>区段叠加法</strong>来计算弯矩，包括弯矩的叠加(2种)、剪力的叠加(2种)、集度的叠加(1种)。</p><p>比如说课后习题<code>3-4</code>使用了2种弯矩的叠加来求解。</p><p>在计算过程中，~~可以使用后续知识，如影响线、机动法~~~~如课后习题<code>3-5(c)</code>可以使用影响线求出支座反力，然后用几何关系来计算，非常便捷。我只用了两分钟就完成了弯矩图的计算。还可以对照<code>3-9(a)</code>也是可以使用快捷法快速求解。</p><hr><h5 id=静定平面刚架>静定平面刚架<a hidden class=anchor aria-hidden=true href=#静定平面刚架>#</a></h5><p>首先还是得求出支座反力，部分题目得先求出支座的竖直反力，然后对基本部分列平衡方程才可以求解。如例题<code>3-19</code></p><p>**极其重要的一点是，刚架可以看成简支梁来求解，之前简支梁的方法都是可以使用的。**需要注意的是，刚架的杆接可能无法提供水平剪力，在此处的弯矩图导数为$0$。是一个容易忽略的几何特征。如例题<code>3-22</code>使用快捷法就有用到。</p><hr><h5 id=静定平面桁架>静定平面桁架<a hidden class=anchor aria-hidden=true href=#静定平面桁架>#</a></h5><p><strong>结点法:</strong></p><p>考虑到桁架和刚架的不同，我们一般从几何组成分析开始，按照拆除二元体的顺序进行分析，检查是否有零杆<sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup>，简化计算。当然第一步还是求解支座反力。</p><p><strong>截面法:</strong></p><p>和理论力学重叠了，省略。<strong>值得一提的是，由于桁架作用的性质，可以将均布荷载分解为集中荷载来求解</strong>，如 <code>3-23</code>。参考课本<code>P51</code>,此时除了支座结点的受力情况不同，其余均相同。</p><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p>指内力解具有唯一性的结构。见课本<code>P34</code>。&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:2><p>桁架计算中内力为$0$的杆件。常常可以通过结点的特殊连接方式还有对称性判断，见<code>P48</code>。&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://rangertherefore.top/tags/%E5%9C%9F%E6%9C%A8/>土木</a></li></ul><nav class=paginav><a class=prev href=https://rangertherefore.top/posts/%E6%A6%82%E7%8E%87%E8%AE%BA%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0/><span class=title>« Prev</span><br><span>概率论 期中复习</span>
+</a><a class=next href=https://rangertherefore.top/posts/startingover/><span class=title>Next »</span><br><span>StartingOver</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2025 <a href=https://rangertherefore.top/>我的博客</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

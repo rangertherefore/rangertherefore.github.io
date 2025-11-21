@@ -11,8 +11,36 @@
     </image>
     <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 13 Nov 2025 16:15:13 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 21 Nov 2025 16:15:13 +0800</lastBuildDate>
     <atom:link href="https://rangertherefore.top/tags/%E6%95%B0%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>概率论 期中复习</title>
+      <link>https://rangertherefore.top/posts/%E6%A6%82%E7%8E%87%E8%AE%BA%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0/</link>
+      <pubDate>Fri, 21 Nov 2025 16:15:13 +0800</pubDate>
+      <guid>https://rangertherefore.top/posts/%E6%A6%82%E7%8E%87%E8%AE%BA%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0/</guid>
+      <description>&lt;p&gt;符号说明:&lt;/p&gt;
+&lt;p&gt;对于随机变量$X$，概率密度函数记为$f_X(x)$,和课本略有不同。&lt;/p&gt;
+&lt;p&gt;分布函数$F_{X,Y}(x,y)$的角标在符号不混淆的情况下省略为$F(x,y)$。&lt;/p&gt;
+&lt;p&gt;参考教材为&lt;strong&gt;概率论和随机过程 [林正炎、苏中根、张立新]&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;一些定义和结论&#34;&gt;一些定义和结论&lt;/h3&gt;
+&lt;p&gt;对于分布函数$F(x) = \int_{-\infty}^x p(y)dy, \quad -\infty &amp;lt; x &amp;lt; \infty$,满足三条性质:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;单调不减性:$F(x)\leq F(y), s.t. x \leq y$&lt;/li&gt;
+&lt;li&gt;$$\lim_{x\to -\infty} F(x)=0,\lim_{x\to \infty} F(x)=1$$,采用&lt;strong&gt;概率的连续性定理&lt;/strong&gt;完成证明&lt;/li&gt;
+&lt;li&gt;$\lim_{n\to \infty} F(x+\frac{1}{n}) = F(x)$,证明同上&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$\boxed{Remark:}$随机向量的概率分布需要的联合分布函数除了满足以上三条性质，还需要满足&lt;strong&gt;矩形上的非负性。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;即:
+$$
+\forall a &amp;lt; b ,\forall c&amp;lt;d,F(b,d)-F(a,d)-F(b,c)+F(a,c) \geq 0
+$$
+反例:$F_{X,Y}(x,y) = \begin{cases} &amp;amp;1 &amp;amp;x\geq 0,y\geq0,x+y \geq 1 \ &amp;amp;0 &amp;amp; else \end{cases}$&lt;/p&gt;
+&lt;p&gt;满足前三条，但是不满足第四条(取$(0.4,0.7] \times (0.4,0.7]$,将这个矩形的顶点带入可验证)，&lt;strong&gt;不是合法的二维随机向量分布函数。&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;边际分布&#34;&gt;边际分布&lt;/h3&gt;
+&lt;p&gt;对于离散型随机向量(仅能取有限组值或可列组值)，$P(x = \xi_i) = \sum_{j=1}^n P(x = \xi_i,y = \eta_j) = p_{i,\cdot}$&lt;/p&gt;</description>
+    </item>
     <item>
       <title>数学分析三 期中复习</title>
       <link>https://rangertherefore.top/posts/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E6%9C%9F%E4%B8%AD/</link>
